@@ -1,18 +1,19 @@
 //
-//  US2Beacon.m
+//  US2BeaconWrapper.m
 //  US2EstimoteDistances
 //
 //  Created by A on 13/02/2014.
 //  Copyright (c) 2014 ustwo. All rights reserved.
 //
 
-#import "US2Beacon.h"
+#import "US2BeaconWrapper.h"
 
-@implementation US2Beacon
-- (id) initWithColor: (UIColor *) color {
+@implementation US2BeaconWrapper
+- (id) initWithColor: (UIColor *) color andName:(NSString *)name{
     if (self = [super init])
     {
         self.color = color;
+        self.name = name;
     }
     return self;
 }
