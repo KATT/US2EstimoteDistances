@@ -128,3 +128,5 @@ xcuserdata
 #
 # ...none. Everything is now explained.
 /Estimote tests.xcodeproj/xcuserdata/ajax.xcuserdatad/xcschemes/Estimote tests.xcscheme
+
+/Pods/
