@@ -22,6 +22,7 @@
 		AA533E6218AD029E003BBD90 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA533E6018AD029E003BBD90 /* InfoPlist.strings */; };
 		AA533E6418AD029E003BBD90 /* US2EstimoteDistancesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA533E6318AD029E003BBD90 /* US2EstimoteDistancesTests.m */; };
 		AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */; };
+		AAEC10AA18AD242600EC9ED8 /* US2BeaconBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A918AD242600EC9ED8 /* US2BeaconBarView.m */; };
 		D777BFC5413C4C98AC853E2C /* libPods-US2EstimoteDistances.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD3A078A57546AF96599447 /* libPods-US2EstimoteDistances.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,8 @@
 		AA533E6318AD029E003BBD90 /* US2EstimoteDistancesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = US2EstimoteDistancesTests.m; sourceTree = "<group>"; };
 		AAEC10A518AD059400EC9ED8 /* US2BeaconWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconWrapper.h; sourceTree = "<group>"; };
 		AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconWrapper.m; sourceTree = "<group>"; };
+		AAEC10A818AD242600EC9ED8 /* US2BeaconBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconBarView.h; sourceTree = "<group>"; };
+		AAEC10A918AD242600EC9ED8 /* US2BeaconBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconBarView.m; sourceTree = "<group>"; };
 		BDD3A078A57546AF96599447 /* libPods-US2EstimoteDistances.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-US2EstimoteDistances.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52BF9597E6E4799A8BFDCAF /* Pods-US2EstimoteDistances.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US2EstimoteDistances.xcconfig"; path = "Pods/Pods-US2EstimoteDistances.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +133,8 @@
 				AA533E3F18AD029E003BBD90 /* Supporting Files */,
 				AAEC10A518AD059400EC9ED8 /* US2BeaconWrapper.h */,
 				AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */,
+				AAEC10A818AD242600EC9ED8 /* US2BeaconBarView.h */,
+				AAEC10A918AD242600EC9ED8 /* US2BeaconBarView.m */,
 			);
 			path = US2EstimoteDistances;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAEC10AA18AD242600EC9ED8 /* US2BeaconBarView.m in Sources */,
 				AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */,
 				AA533E4F18AD029E003BBD90 /* US2ViewController.m in Sources */,
 				AA533E4518AD029E003BBD90 /* main.m in Sources */,

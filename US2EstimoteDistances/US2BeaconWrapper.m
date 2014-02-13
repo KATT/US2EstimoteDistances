@@ -9,10 +9,9 @@
 #import "US2BeaconWrapper.h"
 
 @implementation US2BeaconWrapper
-- (id) initWithColor: (UIColor *) color andName:(NSString *)name{
+- (id) initWithName:(NSString *)name{
     if (self = [super init])
     {
-        self.color = color;
         self.name = name;
     }
     return self;
