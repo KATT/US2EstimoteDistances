@@ -28,3 +28,7 @@
 #endif
 
 #define ZAssert(condition, ...) do { if (!(condition)) { ALog(__VA_ARGS__); }} while(0)
+
+
+#import "US2BeaconDataSingleton.h"
+#define BEACONDATA [US2BeaconDataSingleton sharedInstance]
