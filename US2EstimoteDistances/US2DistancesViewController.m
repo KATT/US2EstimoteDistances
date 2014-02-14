@@ -36,6 +36,8 @@
 }
 -(void)setupViews
 {
+    self.view.autoresizesSubviews = YES;
+
     CGFloat aThird = self.view.frame.size.width/3;
     CGFloat height = self.view.frame.size.height;
 

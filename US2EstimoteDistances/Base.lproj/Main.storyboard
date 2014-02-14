@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="-745" y="766"/>
         </scene>
-        <!--View Controller - Triliteration-->
+        <!--Triliteration View Controller - Triliteration-->
         <scene sceneID="PmM-4Q-wmt">
             <objects>
-                <viewController id="pV6-8R-Xak" sceneMemberID="viewController">
+                <viewController id="pV6-8R-Xak" customClass="US2TriliterationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wZf-oT-tNz"/>
                         <viewControllerLayoutGuide type="bottom" id="LU9-IZ-eHP"/>

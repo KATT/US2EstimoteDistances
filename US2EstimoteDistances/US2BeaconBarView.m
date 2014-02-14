@@ -37,9 +37,11 @@
 -(void) setup
 {
     self.autoresizesSubviews = YES;
+    self.barView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 
     self.barView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, 0)];
-    self.metricLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 50, self.frame.size.width, 50)];
+    self.metricLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 100, self.frame.size.width, 50)];
 
     self.metricLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
 
@@ -47,8 +49,6 @@
     self.barView.backgroundColor = self.darkColor;
 
 
-    self.barView.autoresizingMask    = UIViewAutoresizingFlexibleHeight;
-    self.autoresizingMask    = UIViewAutoresizingFlexibleHeight;
 
     [self addSubview:self.barView];
     [self addSubview:self.metricLabel];
@@ -63,6 +63,7 @@
         DLog(@"WHAT?");
     }
 
+    DLog(@"frame: %@", NSStringFromCGRect(self.frame));
     CGFloat fill = distance/(maxDistance * 1.1);
 
     CGFloat newHeight = self.frame.size.height*fill;
