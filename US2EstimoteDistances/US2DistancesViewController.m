@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 ustwo. All rights reserved.
 //
 
-#import "US2ViewController.h"
+#import "US2DistancesViewController.h"
 
 #import <ESTBeaconManager.h>
 #import <HexColors/HexColor.h>
@@ -14,7 +14,7 @@
 #import "US2BeaconWrapper.h"
 #import "US2BeaconBarView.h"
 
-@interface US2ViewController () <ESTBeaconManagerDelegate>
+@interface US2DistancesViewController () <ESTBeaconManagerDelegate>
 
 @property (nonatomic, strong) ESTBeaconManager* beaconManager;
 
@@ -33,7 +33,7 @@
 @property (nonatomic, strong) NSMutableArray *beacons;
 @end
 
-@implementation US2ViewController
+@implementation US2DistancesViewController
 
 - (void)viewDidLoad
 {

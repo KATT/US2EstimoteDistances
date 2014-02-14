@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface US2ViewController : UIViewController
+@interface US2DistancesViewController : UIViewController
 
 @end
