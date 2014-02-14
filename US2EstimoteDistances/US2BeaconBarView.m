@@ -36,11 +36,15 @@
 
 -(void) setup
 {
+    self.autoresizesSubviews = YES;
+
     self.barView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, 0)];
     self.metricLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 50, self.frame.size.width, 50)];
 
-    self.backgroundColor = self.darkColor;
-    self.barView.backgroundColor     = self.lightColor;
+    self.metricLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+
+    self.backgroundColor = self.lightColor;
+    self.barView.backgroundColor = self.darkColor;
 
 
     self.barView.autoresizingMask    = UIViewAutoresizingFlexibleHeight;
@@ -59,7 +63,7 @@
         DLog(@"WHAT?");
     }
 
-    CGFloat fill = 1.0 - distance/(maxDistance * 1.1);
+    CGFloat fill = distance/(maxDistance * 1.1);
 
     CGFloat newHeight = self.frame.size.height*fill;
     CGFloat newY = self.frame.size.height - newHeight;
@@ -79,8 +83,8 @@
     self.metricLabel.textAlignment = NSTextAlignmentCenter;
 
 
-    self.metricLabel.shadowColor = [UIColor darkTextColor];
-    self.metricLabel.shadowOffset = CGSizeMake(0, 1.0);
+//    self.metricLabel.shadowColor = [UIColor darkTextColor];
+//    self.metricLabel.shadowOffset = CGSizeMake(0, 1.0);
 }
 
 

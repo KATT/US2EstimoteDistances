@@ -30,7 +30,7 @@
 
 @property (nonatomic, assign) CGFloat maxDistance;
 
-@property (nonatomic, readonly) NSArray *beacons;
+@property (nonatomic, strong) NSMutableArray *beacons;
 @end
 
 @implementation US2ViewController
@@ -39,11 +39,15 @@
 {
     [super viewDidLoad];
 
-    // Setup beacon wrapper objects
+    // Setup known beacons
     self.mintBeacon = [[US2BeaconWrapper alloc] initWithName:@"Mint"];
     self.purpleBeacon = [[US2BeaconWrapper alloc] initWithName:@"Purple"];
     self.blueBeacon = [[US2BeaconWrapper alloc] initWithName:@"Blue"];
 
+    self.beacons = [NSMutableArray array];
+    [self.beacons addObject:self.mintBeacon];
+    [self.beacons addObject:self.blueBeacon];
+    [self.beacons addObject:self.purpleBeacon];
 
     // Setup views
     [self setupViews];
@@ -79,6 +83,10 @@
     [self.view addSubview:self.mintBeaconView];
     [self.view addSubview:self.blueBeaconView];
     [self.view addSubview:self.purpleBeaconView];
+
+    UIView *statusBarBackgroundView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+    statusBarBackgroundView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
+    [self.view addSubview:statusBarBackgroundView];
 }
 
 -(void)mapBeacon: (ESTBeacon*)beacon {
@@ -113,11 +121,6 @@
 
 }
 
-
-- (NSArray *) beacons
-{
-    return [NSArray arrayWithObjects:self.mintBeacon, self.purpleBeacon, self.blueBeacon, nil];
-}
 
 - (void) updateMaxDistance
 {

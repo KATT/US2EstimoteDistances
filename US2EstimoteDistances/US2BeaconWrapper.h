@@ -17,4 +17,5 @@
 @property (nonatomic, strong) ESTBeacon *beacon;
 @property (nonatomic, copy) NSString *name;
 
+
 @end
