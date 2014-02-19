@@ -12,11 +12,7 @@
 
 @interface US2BeaconBarView : UIView
 
-- (id)initWithFrame:(CGRect)frame beaconWrapper:(US2BeaconWrapper *)beacon lightColor:(UIColor *) lightColor darkColor:(UIColor *) darkColor;
-
-@property (nonatomic, strong) UIColor *lightColor;
-@property (nonatomic, strong) UIColor *darkColor;
-
+- (id)initWithFrame:(CGRect)frame beaconWrapper:(US2BeaconWrapper *)beacon;
 
 -(void) updateUIWithMaxDistance: (CGFloat )maxDistance;
 @end

@@ -11,11 +11,16 @@
 @class ESTBeacon;
 @interface US2BeaconWrapper : NSObject
 
-- (id) initWithName:(NSString*)name;
+- (id) initWithName:(NSString*)name lightColor:(UIColor *) lightColor darkColor:(UIColor *) darkColor;
 
 
 @property (nonatomic, strong) ESTBeacon *beacon;
 @property (nonatomic, copy) NSString *name;
 
+
+@property (nonatomic, strong) UIColor *lightColor;
+@property (nonatomic, strong) UIColor *darkColor;
+
+@property (nonatomic, assign) CGPoint coordinate;
 
 @end

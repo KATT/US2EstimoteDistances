@@ -19,13 +19,11 @@
 
 @implementation US2BeaconBarView
 
-- (id)initWithFrame:(CGRect)frame beaconWrapper:(US2BeaconWrapper *)beaconWrapper lightColor:(UIColor *) lightColor darkColor:(UIColor *) darkColor
+- (id)initWithFrame:(CGRect)frame beaconWrapper:(US2BeaconWrapper *)beaconWrapper
 {
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.lightColor = lightColor;
-        self.darkColor = darkColor;
         self.beaconWrapper = beaconWrapper;
 
         [self setup];
@@ -45,8 +43,8 @@
 
     self.metricLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
 
-    self.backgroundColor = self.lightColor;
-    self.barView.backgroundColor = self.darkColor;
+    self.backgroundColor = self.beaconWrapper.lightColor;
+    self.barView.backgroundColor = self.beaconWrapper.darkColor;
 
 
 
@@ -58,12 +56,13 @@
 {
     CGFloat distance = self.beaconWrapper.beacon.distance.floatValue;
 
-    if (distance < 0)
+    if (distance < 0.0)
     {
-        DLog(@"WHAT?");
+        self.alpha = 0.1;
+        return;
     }
-
-    DLog(@"frame: %@", NSStringFromCGRect(self.frame));
+    self.alpha = 1.0;
+//    DLog(@"frame: %@", NSStringFromCGRect(self.frame));
     CGFloat fill = distance/(maxDistance * 1.1);
 
     CGFloat newHeight = self.frame.size.height*fill;

@@ -22,8 +22,13 @@
 @property (nonatomic, strong, readonly) US2BeaconWrapper *purpleBeacon;
 @property (nonatomic, strong, readonly) US2BeaconWrapper *blueBeacon;
 
+// Get the current max distance
 @property (nonatomic, assign, readonly) CGFloat maxDistance;
 
+// get the currently closest beacon
+@property (nonatomic, strong, readonly) US2BeaconWrapper *closestBeacon;
+
+// Get all the attached beacons
 @property (nonatomic, strong, readonly) NSMutableArray *beacons;
 
 @end

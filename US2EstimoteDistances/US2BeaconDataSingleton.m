@@ -22,6 +22,8 @@
 @property (readwrite) US2BeaconWrapper *blueBeacon;
 
 @property (readwrite) CGFloat maxDistance;
+@property (readwrite) CGFloat maxX;
+@property (readwrite) CGFloat maxY;
 
 @property (readwrite) NSMutableArray *beacons;
 
@@ -50,14 +52,23 @@
 - (void) setup
 {
     // Setup known beacons
-    self.mintBeacon = [[US2BeaconWrapper alloc] initWithName:@"Mint"];
-    self.purpleBeacon = [[US2BeaconWrapper alloc] initWithName:@"Purple"];
-    self.blueBeacon = [[US2BeaconWrapper alloc] initWithName:@"Blue"];
+    self.mintBeacon = [[US2BeaconWrapper alloc] initWithName:@"Mint" lightColor:[UIColor colorWithHexString:@"98c5a6"] darkColor:[UIColor colorWithHexString:@"5c7865"]];
+    self.purpleBeacon = [[US2BeaconWrapper alloc] initWithName:@"Purple" lightColor:[UIColor colorWithHexString:@"5c59a7"] darkColor:[UIColor colorWithHexString:@"3f3d73"]];
+    self.blueBeacon = [[US2BeaconWrapper alloc] initWithName:@"Blue" lightColor:[UIColor colorWithHexString:@"9fddf9"] darkColor:[UIColor colorWithHexString:@"6f9aad"]];
+
+    self.blueBeacon.coordinate = CGPointMake(0.0, 0.0);
+    self.purpleBeacon.coordinate = CGPointMake(0.0, 3.0);
+    self.mintBeacon.coordinate = CGPointMake(1.0, 3.0);
 
     self.beacons = [NSMutableArray array];
     [self.beacons addObject:self.mintBeacon];
     [self.beacons addObject:self.blueBeacon];
     [self.beacons addObject:self.purpleBeacon];
+
+    for (US2BeaconWrapper *beacon in self.beacons) {
+        self.maxX = MAX(self.maxX, beacon.coordinate.x);
+        self.maxY = MAX(self.maxY, beacon.coordinate.y);
+    }
 
     // Setup views
     [self setupBeaconManager];
@@ -109,6 +120,7 @@
 
     [self updateMaxDistance];
 
+    DLog(@"Closest beacon: %@. Distance: %.2f", self.closestBeacon.name, self.closestBeacon.beacon.distance.floatValue);
     [[NSNotificationCenter defaultCenter] postNotificationName:US2BeaconDataSingletonUpdate object:self];
 }
 
@@ -116,6 +128,8 @@
 - (void) updateMaxDistance
 {
     self.maxDistance = 0;
+    self.maxX = 0;
+    self.maxY = 0;
 
     for (US2BeaconWrapper *beaconWrapper in self.beacons) {
         CGFloat distance = beaconWrapper.beacon.distance.floatValue;
@@ -124,6 +138,20 @@
             self.maxDistance = distance;
         }
     }
+}
+
+-(US2BeaconWrapper*)closestBeacon {
+    US2BeaconWrapper *closestBeacon;
+    for (US2BeaconWrapper *beaconWrapper in self.beacons) {
+        if (beaconWrapper.beacon.distance.floatValue < 0) continue;
+        
+        if (!closestBeacon || closestBeacon.beacon.distance.floatValue > beaconWrapper.beacon.distance.floatValue ) {
+            closestBeacon = beaconWrapper;
+        }
+    }
+
+    return closestBeacon;
+
 }
 
 @end

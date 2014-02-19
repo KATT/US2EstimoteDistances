@@ -41,9 +41,9 @@
     CGFloat aThird = self.view.frame.size.width/3;
     CGFloat height = self.view.frame.size.height;
 
-    self.mintBeaconView     = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*0, 0, aThird, height) beaconWrapper:BEACONDATA.mintBeacon lightColor:[UIColor colorWithHexString:@"98c5a6"] darkColor:[UIColor colorWithHexString:@"5c7865"]];
-    self.blueBeaconView     = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*1, 0, aThird, height) beaconWrapper:BEACONDATA.blueBeacon lightColor:[UIColor colorWithHexString:@"9fddf9"] darkColor:[UIColor colorWithHexString:@"6f9aad"]];
-    self.purpleBeaconView   = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*2, 0, aThird, height) beaconWrapper:BEACONDATA.purpleBeacon lightColor:[UIColor colorWithHexString:@"5c59a7"] darkColor:[UIColor colorWithHexString:@"3f3d73"]];
+    self.mintBeaconView     = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*0, 0, aThird, height) beaconWrapper:BEACONDATA.mintBeacon];
+    self.blueBeaconView     = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*1, 0, aThird, height) beaconWrapper:BEACONDATA.blueBeacon];
+    self.purpleBeaconView   = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*2, 0, aThird, height) beaconWrapper:BEACONDATA.purpleBeacon];
 
 
     [self.view addSubview:self.mintBeaconView];
@@ -61,11 +61,12 @@
 }
 - (void) updateUI
 {
-
+    CGFloat maxDistance = ceilf(BEACONDATA.maxDistance);
+    
     [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.mintBeaconView updateUIWithMaxDistance:BEACONDATA.maxDistance];
-        [self.blueBeaconView updateUIWithMaxDistance:BEACONDATA.maxDistance];
-        [self.purpleBeaconView updateUIWithMaxDistance:BEACONDATA.maxDistance];
+        [self.mintBeaconView updateUIWithMaxDistance:maxDistance];
+        [self.blueBeaconView updateUIWithMaxDistance:maxDistance];
+        [self.purpleBeaconView updateUIWithMaxDistance:maxDistance];
     } completion:nil];
 
 }
