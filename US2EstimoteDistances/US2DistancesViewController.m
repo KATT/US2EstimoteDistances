@@ -14,7 +14,7 @@
 #import "US2BeaconWrapper.h"
 #import "US2BeaconBarView.h"
 
-@interface US2DistancesViewController () <ESTBeaconManagerDelegate>
+@interface US2DistancesViewController ()
 
 // Views
 @property (nonatomic, strong) US2BeaconBarView *mintBeaconView;

@@ -21,6 +21,7 @@
 		AA533E5A18AD029E003BBD90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3C18AD029E003BBD90 /* UIKit.framework */; };
 		AA533E6218AD029E003BBD90 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA533E6018AD029E003BBD90 /* InfoPlist.strings */; };
 		AA533E6418AD029E003BBD90 /* US2EstimoteDistancesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA533E6318AD029E003BBD90 /* US2EstimoteDistancesTests.m */; };
+		AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */; };
 		AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */; };
 		AAEC10AA18AD242600EC9ED8 /* US2BeaconBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A918AD242600EC9ED8 /* US2BeaconBarView.m */; };
 		AAEC10AF18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10AE18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m */; };
@@ -58,6 +59,8 @@
 		AA533E5F18AD029E003BBD90 /* US2EstimoteDistancesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "US2EstimoteDistancesTests-Info.plist"; sourceTree = "<group>"; };
 		AA533E6118AD029E003BBD90 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA533E6318AD029E003BBD90 /* US2EstimoteDistancesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = US2EstimoteDistancesTests.m; sourceTree = "<group>"; };
+		AABEEC8718B6500C00AD844F /* US2BeaconAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconAnnotationView.h; sourceTree = "<group>"; };
+		AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconAnnotationView.m; sourceTree = "<group>"; };
 		AAEC10A518AD059400EC9ED8 /* US2BeaconWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconWrapper.h; sourceTree = "<group>"; };
 		AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconWrapper.m; sourceTree = "<group>"; };
 		AAEC10A818AD242600EC9ED8 /* US2BeaconBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconBarView.h; sourceTree = "<group>"; };
@@ -95,6 +98,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA0AFE6E18B5160A00E1C202 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AAEC10A518AD059400EC9ED8 /* US2BeaconWrapper.h */,
+				AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */,
+				AAEC10AD18AE72FB00EC9ED8 /* US2BeaconDataSingleton.h */,
+				AAEC10AE18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		AA0AFE6F18B5161100E1C202 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AAEC10A818AD242600EC9ED8 /* US2BeaconBarView.h */,
+				AAEC10A918AD242600EC9ED8 /* US2BeaconBarView.m */,
+				AABEEC8718B6500C00AD844F /* US2BeaconAnnotationView.h */,
+				AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AA0AFE7018B5161D00E1C202 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AA533E4D18AD029E003BBD90 /* US2DistancesViewController.h */,
+				AA533E4E18AD029E003BBD90 /* US2DistancesViewController.m */,
+				AAEC10B018AE7CE200EC9ED8 /* US2TriliterationViewController.h */,
+				AAEC10B118AE7CE200EC9ED8 /* US2TriliterationViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		AA533E2C18AD029E003BBD90 = {
 			isa = PBXGroup;
 			children = (
@@ -130,21 +166,10 @@
 		AA533E3E18AD029E003BBD90 /* US2EstimoteDistances */ = {
 			isa = PBXGroup;
 			children = (
-				AA533E4718AD029E003BBD90 /* US2AppDelegate.h */,
-				AA533E4818AD029E003BBD90 /* US2AppDelegate.m */,
-				AA533E4A18AD029E003BBD90 /* Main.storyboard */,
-				AA533E4D18AD029E003BBD90 /* US2DistancesViewController.h */,
-				AA533E4E18AD029E003BBD90 /* US2DistancesViewController.m */,
-				AA533E5018AD029E003BBD90 /* Images.xcassets */,
 				AA533E3F18AD029E003BBD90 /* Supporting Files */,
-				AAEC10A518AD059400EC9ED8 /* US2BeaconWrapper.h */,
-				AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */,
-				AAEC10A818AD242600EC9ED8 /* US2BeaconBarView.h */,
-				AAEC10A918AD242600EC9ED8 /* US2BeaconBarView.m */,
-				AAEC10AD18AE72FB00EC9ED8 /* US2BeaconDataSingleton.h */,
-				AAEC10AE18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m */,
-				AAEC10B018AE7CE200EC9ED8 /* US2TriliterationViewController.h */,
-				AAEC10B118AE7CE200EC9ED8 /* US2TriliterationViewController.m */,
+				AA0AFE6E18B5160A00E1C202 /* Model */,
+				AA0AFE6F18B5161100E1C202 /* View */,
+				AA0AFE7018B5161D00E1C202 /* Controller */,
 			);
 			path = US2EstimoteDistances;
 			sourceTree = "<group>";
@@ -152,6 +177,10 @@
 		AA533E3F18AD029E003BBD90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA533E4718AD029E003BBD90 /* US2AppDelegate.h */,
+				AA533E4818AD029E003BBD90 /* US2AppDelegate.m */,
+				AA533E4A18AD029E003BBD90 /* Main.storyboard */,
+				AA533E5018AD029E003BBD90 /* Images.xcassets */,
 				AA533E4018AD029E003BBD90 /* US2EstimoteDistances-Info.plist */,
 				AA533E4118AD029E003BBD90 /* InfoPlist.strings */,
 				AA533E4418AD029E003BBD90 /* main.m */,
@@ -228,6 +257,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = ustwo;
 				TargetAttributes = {
+					AA533E3418AD029E003BBD90 = {
+						DevelopmentTeam = 8Z3V4F58RK;
+					};
 					AA533E5518AD029E003BBD90 = {
 						TestTargetID = AA533E3418AD029E003BBD90;
 					};
@@ -315,6 +347,7 @@
 				AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */,
 				AAEC10AF18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m in Sources */,
 				AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */,
+				AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */,
 				AAEC10B218AE7CE200EC9ED8 /* US2TriliterationViewController.m in Sources */,
 				AA533E4518AD029E003BBD90 /* main.m in Sources */,
 				AA533E4918AD029E003BBD90 /* US2AppDelegate.m in Sources */,
@@ -445,10 +478,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "US2EstimoteDistances/US2EstimoteDistances-Prefix.pch";
 				INFOPLIST_FILE = "US2EstimoteDistances/US2EstimoteDistances-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -459,10 +495,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Johansson (7VF7TEWKNS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "US2EstimoteDistances/US2EstimoteDistances-Prefix.pch";
 				INFOPLIST_FILE = "US2EstimoteDistances/US2EstimoteDistances-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

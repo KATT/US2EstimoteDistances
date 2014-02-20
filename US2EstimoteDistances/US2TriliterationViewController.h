@@ -10,4 +10,6 @@
 
 @interface US2TriliterationViewController : UIViewController
 
+
+@property (nonatomic, weak) IBOutlet UIView *mapView;
 @end

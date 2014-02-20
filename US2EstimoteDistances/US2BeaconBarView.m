@@ -56,9 +56,9 @@
 {
     CGFloat distance = self.beaconWrapper.beacon.distance.floatValue;
 
-    if (distance < 0.0)
+    if (distance <= 0.0)
     {
-        self.alpha = 0.1;
+        self.alpha = 0.3;
         return;
     }
     self.alpha = 1.0;

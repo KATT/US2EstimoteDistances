@@ -31,4 +31,6 @@
 // Get all the attached beacons
 @property (nonatomic, strong, readonly) NSMutableArray *beacons;
 
+@property (nonatomic) CGPoint maxCoordinate;
+
 @end

@@ -53,9 +53,19 @@
                     <view key="view" contentMode="scaleToFill" id="ueD-dx-XKV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7KJ-iE-Kcd">
+                                <rect key="frame" x="10" y="10" width="300" height="498"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.92941182850000004" green="0.0" blue="0.50980395079999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Triliteration" id="6e1-rD-puG"/>
+                    <connections>
+                        <outlet property="mapView" destination="7KJ-iE-Kcd" id="hdK-8p-1YS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cz9-7t-xVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

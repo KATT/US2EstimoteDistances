@@ -33,7 +33,8 @@
 
 - (id)init
 {
-    if (self = [super init]) {
+    if (self = [super init])
+    {
         [self setup];
     }
     return self;
@@ -56,9 +57,9 @@
     self.purpleBeacon = [[US2BeaconWrapper alloc] initWithName:@"Purple" lightColor:[UIColor colorWithHexString:@"5c59a7"] darkColor:[UIColor colorWithHexString:@"3f3d73"]];
     self.blueBeacon = [[US2BeaconWrapper alloc] initWithName:@"Blue" lightColor:[UIColor colorWithHexString:@"9fddf9"] darkColor:[UIColor colorWithHexString:@"6f9aad"]];
 
-    self.blueBeacon.coordinate = CGPointMake(0.0, 0.0);
-    self.purpleBeacon.coordinate = CGPointMake(0.0, 3.0);
-    self.mintBeacon.coordinate = CGPointMake(1.0, 3.0);
+    self.blueBeacon.coordinate = CGPointMake(3.7, 0.0);
+    self.purpleBeacon.coordinate = CGPointMake(6.2, 8.0);
+    self.mintBeacon.coordinate = CGPointMake(0.0, 8.0);
 
     self.beacons = [NSMutableArray array];
     [self.beacons addObject:self.mintBeacon];
@@ -69,6 +70,7 @@
         self.maxX = MAX(self.maxX, beacon.coordinate.x);
         self.maxY = MAX(self.maxY, beacon.coordinate.y);
     }
+    self.maxCoordinate = CGPointMake(self.maxX, self.maxY);
 
     // Setup views
     [self setupBeaconManager];
@@ -92,21 +94,8 @@
     [self.beaconManager startRangingBeaconsInRegion:region];
 }
 
--(void)mapBeacon: (ESTBeacon*)beacon {
-    if ([beacon.major isEqualToNumber: @35729]) {
-        // Mint
-        self.mintBeacon.beacon = beacon;
-    } else if ([beacon.major isEqualToNumber: @4092]) {
-        // Blue
-        self.blueBeacon.beacon = beacon;
-    } else if ([beacon.major isEqualToNumber: @50667]) {
-        // Purple
-        self.purpleBeacon.beacon = beacon;
-    } else {
-        DLog(@"Unidentified beacon found on distance %@. Beacon: %@", beacon.distance, beacon);
-    }
 
-}
+#pragma mark - ESTBeaconManagerDelegate
 
 
 -(void)beaconManager:(ESTBeaconManager *)manager
@@ -125,13 +114,28 @@
 }
 
 
+-(void)mapBeacon: (ESTBeacon*)beacon
+{
+    if ([beacon.major isEqualToNumber: @35729]) {
+        // Mint
+        self.mintBeacon.beacon = beacon;
+    } else if ([beacon.major isEqualToNumber: @4092]) {
+        // Blue
+        self.blueBeacon.beacon = beacon;
+    } else if ([beacon.major isEqualToNumber: @50667]) {
+        // Purple
+        self.purpleBeacon.beacon = beacon;
+    } else {
+        DLog(@"Unidentified beacon found on distance %@. Beacon: %@", beacon.distance, beacon);
+    }
+
+}
 - (void) updateMaxDistance
 {
     self.maxDistance = 0;
-    self.maxX = 0;
-    self.maxY = 0;
 
-    for (US2BeaconWrapper *beaconWrapper in self.beacons) {
+    for (US2BeaconWrapper *beaconWrapper in self.beacons)
+    {
         CGFloat distance = beaconWrapper.beacon.distance.floatValue;
         if (distance > self.maxDistance)
         {
@@ -139,13 +143,17 @@
         }
     }
 }
+#pragma mark - Public methods
 
--(US2BeaconWrapper*)closestBeacon {
+-(US2BeaconWrapper*)closestBeacon
+{
     US2BeaconWrapper *closestBeacon;
-    for (US2BeaconWrapper *beaconWrapper in self.beacons) {
+    for (US2BeaconWrapper *beaconWrapper in self.beacons)
+    {
         if (beaconWrapper.beacon.distance.floatValue < 0) continue;
         
-        if (!closestBeacon || closestBeacon.beacon.distance.floatValue > beaconWrapper.beacon.distance.floatValue ) {
+        if (!closestBeacon || closestBeacon.beacon.distance.floatValue > beaconWrapper.beacon.distance.floatValue )
+        {
             closestBeacon = beaconWrapper;
         }
     }
@@ -153,5 +161,6 @@
     return closestBeacon;
 
 }
+
 
 @end
