@@ -12,6 +12,9 @@
 
 @interface US2BeaconAnnotationView ()
 
+
+@property (nonatomic, strong) CAShapeLayer *circle;
+@property (nonatomic, readonly) CGFloat circleRadius;
 @end
 
 @implementation US2BeaconAnnotationView
@@ -41,9 +44,54 @@
 -(void) setup
 {
     self.backgroundColor = self.beaconWrapper.darkColor;
-//    self.layer.cornerRadius = self.frame.size.width / 2.0;
+    self.layer.cornerRadius = self.bounds.size.width/2;
 
+
+    [self setupCircle];
 }
+- (CGFloat) circleRadius
+{
+    CGFloat distance = self.beaconWrapper.beacon.distance.floatValue;
+
+    if (distance <= 0.0)
+    {
+#ifdef DEBUG
+        // if plugged in, just show a random value
+        UIDeviceBatteryState batteryState = [UIDevice currentDevice].batteryState;
+        if (batteryState == UIDeviceBatteryStateCharging || batteryState == UIDeviceBatteryStateFull) {
+            return arc4random() % 200;
+        }
+#endif
+        return 0;
+    }
+
+    return distance*self.pixelsPerMeter;
+}
+- (void)setupCircle
+{
+    CGFloat radius = self.circleRadius;
+
+    CAShapeLayer *circle = [CAShapeLayer layer];
+    // Make a circular shape
+    // Center the shape in self.view
+    self.circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius) cornerRadius:radius].CGPath;
+    self.circle.position = CGPointMake(self.center.x-radius, self.center.y-radius);
+
+    // Configure the apperence of the circle
+    circle.fillColor = [self.beaconWrapper.lightColor colorWithAlphaComponent:0.3].CGColor;
+    circle.strokeColor = self.beaconWrapper.darkColor.CGColor;
+    circle.lineWidth = 2;
+
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path addArcWithCenter:self.center
+                    radius:radius
+                startAngle:0.0
+                  endAngle:M_PI * 2.0
+                 clockwise:YES];
+
+    self.circle = circle;
+}
+
 
 -(void) updateUI
 {
@@ -53,12 +101,31 @@
     self.center = CGPointMake(x, y);
 
     DLog(@"Place %@ at (%.0f,%.0f)", self.beaconWrapper.name, x, y);
+
+    // position circle
+    CGFloat radius = self.circleRadius;
+
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue
+                     forKey:kCATransactionDisableActions];
+
+    self.circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius) cornerRadius:radius].CGPath;
+    self.circle.position = CGPointMake(self.center.x-radius, self.center.y-radius);
+
+    [CATransaction commit];
 }
 
 -(void) layoutSubviews
 {
     [super layoutSubviews];
     [self updateUI];
+    // Add to parent layer
+    [self.superview.layer addSublayer:self.circle];
+}
+
+-(void) dealloc
+{
+    [self.circle removeFromSuperlayer];
 }
 
 

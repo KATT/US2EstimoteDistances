@@ -38,14 +38,9 @@
 
 -(void)updateUI
 {
-
     [self.purpleBeaconView updateUI];
     [self.mintBeaconView updateUI];
     [self.blueBeaconView updateUI];
-
-    [self makeCircle:self.mintBeaconView];
-    [self makeCircle:self.blueBeaconView];
-    [self makeCircle:self.purpleBeaconView];
 
 }
 
@@ -68,66 +63,12 @@
 {
     [self setupMapView];
 
-
-    
-
-//
-//    CGFloat aThird = self.view.frame.size.width/3;
-//    CGFloat height = self.view.frame.size.height;
-    //
     self.mintBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.mintBeacon pixelRatio:self.pixelsPerMeter];
     self.blueBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.blueBeacon pixelRatio:self.pixelsPerMeter];
     self.purpleBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.purpleBeacon pixelRatio:self.pixelsPerMeter];
-//    self.blueBeaconView     = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*1, 0, aThird, height) beaconWrapper:BEACONDATA.blueBeacon];
-//    self.purpleBeaconView   = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*2, 0, aThird, height) beaconWrapper:BEACONDATA.purpleBeacon];
-//
     //
     [self.mapView addSubview:self.mintBeaconView];
     [self.mapView addSubview:self.blueBeaconView];
     [self.mapView addSubview:self.purpleBeaconView];
-
-
-    
-//
-//    UIView *statusBarBackgroundView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-//    statusBarBackgroundView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
-//    [self.view addSubview:statusBarBackgroundView];
 }
-
-#pragma mark - draw circle
-
-- (void)makeCircle: (US2BeaconAnnotationView*)annotationView
-{
-    CGFloat distance = annotationView.beaconWrapper.beacon.distance.floatValue;
-    CGFloat radius = distance*self.pixelsPerMeter;
-    if (distance <= 0.0)
-    {
-        return;
-    }
-
-
-    CAShapeLayer *circle = [CAShapeLayer layer];
-    // Make a circular shape
-    circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, 2.0*radius, 2.0*radius)
-                                             cornerRadius:radius].CGPath;
-    // Center the shape in self.view
-    circle.position = CGPointMake(annotationView.center.x-radius,
-                                  annotationView.center.y-radius);
-
-    // Configure the apperence of the circle
-    circle.fillColor = [UIColor clearColor].CGColor;
-    circle.strokeColor = [UIColor blackColor].CGColor;
-    circle.lineWidth = 5;
-
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [path addArcWithCenter:annotationView.center
-                    radius:radius
-                startAngle:0.0
-                  endAngle:M_PI * 2.0
-                 clockwise:YES];
-    // Add to parent layer
-    [self.mapView.layer addSublayer:circle];
-    
-}
-
 @end
