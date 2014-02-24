@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Distances" id="NUr-r5-Wqk"/>
+                    <tabBarItem key="tabBarItem" title="Distances" image="bar_chart-50" id="NUr-r5-Wqk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2RO-Qg-RyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,7 +62,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Triliteration" id="6e1-rD-puG"/>
+                    <tabBarItem key="tabBarItem" title="Triliteration" image="map_marker-50" id="6e1-rD-puG"/>
                     <connections>
                         <outlet property="mapView" destination="7KJ-iE-Kcd" id="hdK-8p-1YS"/>
                     </connections>
@@ -72,6 +72,10 @@
             <point key="canvasLocation" x="-213" y="1090"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bar_chart-50" width="25" height="25"/>
+        <image name="map_marker-50" width="25" height="25"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

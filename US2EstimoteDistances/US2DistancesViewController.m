@@ -49,10 +49,6 @@
     [self.view addSubview:self.mintBeaconView];
     [self.view addSubview:self.blueBeaconView];
     [self.view addSubview:self.purpleBeaconView];
-
-    UIView *statusBarBackgroundView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-    statusBarBackgroundView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
-    [self.view addSubview:statusBarBackgroundView];
 }
 
 -(void)beaconDataUpdated
