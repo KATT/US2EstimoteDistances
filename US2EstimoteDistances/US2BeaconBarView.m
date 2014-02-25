@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) UIView *barView;
 @property (nonatomic, strong) UILabel *metricLabel;
-@property (nonatomic, strong) US2BeaconWrapper *beaconWrapper;
+@property (readwrite) US2BeaconWrapper *beaconWrapper;
 @end
 
 @implementation US2BeaconBarView
@@ -35,13 +35,13 @@
 -(void) setup
 {
     self.autoresizesSubviews = YES;
-    self.barView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.barView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight |UIViewAutoresizingFlexibleWidth;
 
     self.barView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, 0)];
-    self.metricLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 100, self.frame.size.width, 50)];
+    self.metricLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 50, self.frame.size.width, 50)];
 
-    self.metricLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    self.metricLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 
     self.backgroundColor = self.beaconWrapper.lightColor;
     self.barView.backgroundColor = self.beaconWrapper.darkColor;
@@ -67,7 +67,7 @@
 
     CGFloat newHeight = self.frame.size.height*fill;
     CGFloat newY = self.frame.size.height - newHeight;
-    CGRect newRect = CGRectMake(0, newY, self.barView.frame.size.width, newHeight);
+    CGRect newRect = CGRectMake(0, newY, self.frame.size.width, newHeight);
     self.barView.frame = newRect;
 
 

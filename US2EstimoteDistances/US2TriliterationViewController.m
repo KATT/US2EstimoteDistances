@@ -14,11 +14,7 @@
 @interface US2TriliterationViewController ()
 @property (nonatomic, weak) CAShapeLayer *circleLayer;
 
-
-@property (nonatomic, strong) US2BeaconAnnotationView *mintBeaconView;
-@property (nonatomic, strong) US2BeaconAnnotationView *purpleBeaconView;
-@property (nonatomic, strong) US2BeaconAnnotationView *blueBeaconView;
-
+@property (nonatomic, strong) NSMutableArray *beaconViews;
 @property (nonatomic, strong) UIView *deviceAnnotationView;
 
 @end
@@ -30,6 +26,7 @@
 {
     [super viewDidLoad];
 
+    self.beaconViews = [NSMutableArray array];
     // Setup views
     [self setupViews];
 
@@ -40,9 +37,9 @@
 
 -(void)updateUI
 {
-    [self.purpleBeaconView updateUI];
-    [self.mintBeaconView updateUI];
-    [self.blueBeaconView updateUI];
+    for (US2BeaconAnnotationView *beaconAnnotationView in self.beaconViews) {
+        [beaconAnnotationView updateUI];
+    }
 
     [self updateTriliterlation];
 
@@ -79,17 +76,12 @@
 -(void)setupViews
 {
     [self setupMapView];
+    for (US2BeaconWrapper *beaconWrapper in BEACONDATA.beacons) {
+        US2BeaconAnnotationView *beaconAnnotationView = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:beaconWrapper delegate:self];
+        [self.beaconViews addObject:beaconAnnotationView];
+        [self.mapView addSubview:beaconAnnotationView];
 
-    self.mintBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.mintBeacon delegate:self];
-    self.blueBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.blueBeacon delegate:self];
-    self.purpleBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.purpleBeacon delegate:self];
-
-
-    //
-    [self.mapView addSubview:self.mintBeaconView];
-    [self.mapView addSubview:self.blueBeaconView];
-    [self.mapView addSubview:self.purpleBeaconView];
-
+    }
 
     self.deviceAnnotationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     self.deviceAnnotationView.backgroundColor = [UIColor redColor];
@@ -106,22 +98,23 @@
     // below is code taken straight from http://stackoverflow.com/a/20967649/590396, not ideal
     //P1,P2,P3 is the point and 2-dimension vector
     NSMutableArray *P1 = [[NSMutableArray alloc] initWithCapacity:0];
-    [P1 addObject:[NSNumber numberWithDouble:BEACONDATA.mintBeacon.coordinate.x]];
-    [P1 addObject:[NSNumber numberWithDouble:BEACONDATA.mintBeacon.coordinate.y]];
+
+    [P1 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:0].coordinate.x]];
+    [P1 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:0].coordinate.y]];
 
 
     NSMutableArray *P2 = [[NSMutableArray alloc] initWithCapacity:0];
-    [P2 addObject:[NSNumber numberWithDouble:BEACONDATA.blueBeacon.coordinate.x]];
-    [P2 addObject:[NSNumber numberWithDouble:BEACONDATA.blueBeacon.coordinate.y]];
+    [P2 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:1].coordinate.x]];
+    [P2 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:1].coordinate.y]];
 
     NSMutableArray *P3 = [[NSMutableArray alloc] initWithCapacity:0];
-    [P3 addObject:[NSNumber numberWithDouble:BEACONDATA.purpleBeacon.coordinate.x]];
-    [P3 addObject:[NSNumber numberWithDouble:BEACONDATA.purpleBeacon.coordinate.y]];
+    [P3 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:2].coordinate.x]];
+    [P3 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:2].coordinate.y]];
 
     //this is the distance between all the points and the unknown point
-    double DistA = BEACONDATA.mintBeacon.beacon.distance.doubleValue;
-    double DistB = BEACONDATA.blueBeacon.beacon.distance.doubleValue;
-    double DistC = BEACONDATA.purpleBeacon.beacon.distance.doubleValue;
+    double DistA = [BEACONDATA beaconAtIndex:0].beacon.distance.doubleValue;
+    double DistB = [BEACONDATA beaconAtIndex:1].beacon.distance.doubleValue;
+    double DistC = [BEACONDATA beaconAtIndex:2].beacon.distance.doubleValue;
 
     // ex = (P2 - P1)/(numpy.linalg.norm(P2 - P1))
     NSMutableArray *ex = [[NSMutableArray alloc] initWithCapacity:0];

@@ -16,11 +16,8 @@
 
 + (US2BeaconDataSingleton *)sharedInstance;
 
+- (US2BeaconWrapper *)beaconAtIndex: (NSUInteger) index;
 
-// Wrappers for our beacons
-@property (nonatomic, strong, readonly) US2BeaconWrapper *mintBeacon;
-@property (nonatomic, strong, readonly) US2BeaconWrapper *purpleBeacon;
-@property (nonatomic, strong, readonly) US2BeaconWrapper *blueBeacon;
 
 // Get the current max distance
 @property (nonatomic, assign, readonly) CGFloat maxDistance;
@@ -30,6 +27,7 @@
 
 // Get all the attached beacons
 @property (nonatomic, strong, readonly) NSMutableArray *beacons;
+@property (nonatomic, readonly) NSArray *activeBeacons;
 
 @property (nonatomic) CGPoint maxCoordinate;
 

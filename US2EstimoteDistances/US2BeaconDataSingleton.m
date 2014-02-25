@@ -17,9 +17,12 @@
 
 @property (nonatomic, strong) ESTBeaconManager* beaconManager;
 
-@property (readwrite) US2BeaconWrapper *mintBeacon;
-@property (readwrite) US2BeaconWrapper *purpleBeacon;
-@property (readwrite) US2BeaconWrapper *blueBeacon;
+
+// Wrappers for our beacons
+@property (nonatomic, strong) US2BeaconWrapper *mintBeacon;
+@property (nonatomic, strong) US2BeaconWrapper *purpleBeacon;
+@property (nonatomic, strong) US2BeaconWrapper *blueBeacon;
+
 
 @property (readwrite) CGFloat maxDistance;
 @property (readwrite) CGFloat maxX;
@@ -162,5 +165,16 @@
 
 }
 
+- (US2BeaconWrapper *)beaconAtIndex: (NSUInteger) index
+{
+    return [self.beacons objectAtIndex:index];
+}
+
+
+- (NSArray *) activeBeacons
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isActive == YES"];
+    return [self.beacons filteredArrayUsingPredicate:predicate];
+}
 
 @end

@@ -23,4 +23,6 @@
 
 @property (nonatomic, assign) CGPoint coordinate;
 
+@property (nonatomic, readonly) BOOL isActive;
+
 @end

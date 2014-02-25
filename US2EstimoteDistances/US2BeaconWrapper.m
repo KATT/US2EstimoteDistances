@@ -21,4 +21,9 @@
     return self;
 }
 
+
+-(BOOL) isActive
+{
+    return (self.beacon && self.beacon.distance.floatValue >= 0);
+}
 @end

@@ -15,10 +15,8 @@
 
 @interface US2DistancesViewController ()
 
-// Views
-@property (nonatomic, strong) US2BeaconBarView *mintBeaconView;
-@property (nonatomic, strong) US2BeaconBarView *purpleBeaconView;
-@property (nonatomic, strong) US2BeaconBarView *blueBeaconView;
+@property (nonatomic, strong) NSMutableArray *beaconViews;
+
 @end
 
 @implementation US2DistancesViewController
@@ -26,6 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.beaconViews = [NSMutableArray array];
 
     // Setup views
     [self setupViews];
@@ -36,19 +36,45 @@
 -(void)setupViews
 {
     self.view.autoresizesSubviews = YES;
+    CGFloat height = self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height;
 
-    CGFloat aThird = self.view.frame.size.width/3;
-    CGFloat height = self.view.frame.size.height;
+    for (US2BeaconWrapper *beaconWrapper in BEACONDATA.beacons) {
+        US2BeaconBarView *beaconBarView = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(0, 0, 0, height) beaconWrapper:beaconWrapper];
+        [self.beaconViews addObject:beaconBarView];
+        [self.view addSubview:beaconBarView];
+    }
 
-    self.mintBeaconView     = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*0, 0, aThird, height) beaconWrapper:BEACONDATA.mintBeacon];
-    self.blueBeaconView     = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*1, 0, aThird, height) beaconWrapper:BEACONDATA.blueBeacon];
-    self.purpleBeaconView   = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(aThird*2, 0, aThird, height) beaconWrapper:BEACONDATA.purpleBeacon];
-
-
-    [self.view addSubview:self.mintBeaconView];
-    [self.view addSubview:self.blueBeaconView];
-    [self.view addSubview:self.purpleBeaconView];
+    [self updateBarViews];
 }
+
+- (void) updateBarViews
+{
+    CGFloat maxDistance = ceilf(BEACONDATA.maxDistance);
+
+    NSUInteger numberOfActive = 0;
+
+    for (US2BeaconBarView *beaconBarView in self.beaconViews) {
+        BOOL isActiveOrVisible = beaconBarView.frame.size.width > 0.0 || beaconBarView.beaconWrapper.isActive;
+        if (isActiveOrVisible)
+        {
+            numberOfActive++;
+        }
+    }
+
+    CGFloat activeBarWidth = self.view.frame.size.width/numberOfActive;
+
+    CGFloat xOffset = 0;
+    for (US2BeaconBarView *beaconBarView in self.beaconViews) {
+        BOOL isActiveOrVisible = beaconBarView.frame.size.width > 0.0 || beaconBarView.beaconWrapper.isActive;
+        CGFloat barWidth = isActiveOrVisible ? activeBarWidth : 0;
+
+        beaconBarView.frame = CGRectMake(xOffset, beaconBarView.frame.origin.y, barWidth, beaconBarView.frame.size.height);
+        xOffset += barWidth;
+
+        [beaconBarView updateUIWithMaxDistance:maxDistance];
+    }
+}
+
 
 -(void)beaconDataUpdated
 {
@@ -56,15 +82,12 @@
 }
 - (void) updateUI
 {
-    CGFloat maxDistance = ceilf(BEACONDATA.maxDistance);
-    
     [UIView animateWithDuration:0.2f delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.mintBeaconView updateUIWithMaxDistance:maxDistance];
-        [self.blueBeaconView updateUIWithMaxDistance:maxDistance];
-        [self.purpleBeaconView updateUIWithMaxDistance:maxDistance];
+        [self updateBarViews];
     } completion:nil];
 
 }
+
 
 
 @end

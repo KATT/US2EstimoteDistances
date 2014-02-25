@@ -15,4 +15,7 @@
 - (id)initWithFrame:(CGRect)frame beaconWrapper:(US2BeaconWrapper *)beacon;
 
 -(void) updateUIWithMaxDistance: (CGFloat )maxDistance;
+
+
+@property (nonatomic, strong, readonly) US2BeaconWrapper *beaconWrapper;
 @end
