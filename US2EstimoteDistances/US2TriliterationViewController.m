@@ -8,6 +8,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import <HexColors/HexColor.h>
+
 #import "US2TriliterationViewController.h"
 #import "US2BeaconAnnotationView.h"
 
@@ -41,7 +43,9 @@
         [beaconAnnotationView updateUI];
     }
 
-    [self updateTriliterlation];
+    [UIView animateWithDuration:0.6f delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self updateTriliterlation];
+    } completion:nil];
 
 }
 -(void)updateMapViewSize
@@ -83,8 +87,9 @@
 
     }
 
-    self.deviceAnnotationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    self.deviceAnnotationView.backgroundColor = [UIColor redColor];
+    self.deviceAnnotationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    self.deviceAnnotationView.layer.cornerRadius = self.deviceAnnotationView.bounds.size.width /2;
+    self.deviceAnnotationView.backgroundColor = [UIColor colorWithHexString:@"ffbf02"];
     self.deviceAnnotationView.center = CGPointMake(self.mapView.frame.size.width/2, self.mapView.frame.size.height/2);
 
     [self.mapView addSubview:self.deviceAnnotationView];
@@ -93,6 +98,11 @@
 
 -(void) updateTriliterlation
 {
+    if (BEACONDATA.activeBeacons.count < 3) {
+        self.deviceAnnotationView.alpha = 0.3;
+        return;
+    }
+    self.deviceAnnotationView.alpha = 1;
     // TODO
     // rewrite interpolate
     // below is code taken straight from http://stackoverflow.com/a/20967649/590396, not ideal

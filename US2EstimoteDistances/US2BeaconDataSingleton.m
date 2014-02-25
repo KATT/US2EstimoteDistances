@@ -56,6 +56,7 @@
 - (void) setup
 {
     // Setup known beacons
+    // TODO read this from a plist or something
     self.mintBeacon = [[US2BeaconWrapper alloc] initWithName:@"Mint" lightColor:[UIColor colorWithHexString:@"98c5a6"] darkColor:[UIColor colorWithHexString:@"5c7865"]];
     self.purpleBeacon = [[US2BeaconWrapper alloc] initWithName:@"Purple" lightColor:[UIColor colorWithHexString:@"5c59a7"] darkColor:[UIColor colorWithHexString:@"3f3d73"]];
     self.blueBeacon = [[US2BeaconWrapper alloc] initWithName:@"Blue" lightColor:[UIColor colorWithHexString:@"9fddf9"] darkColor:[UIColor colorWithHexString:@"6f9aad"]];
