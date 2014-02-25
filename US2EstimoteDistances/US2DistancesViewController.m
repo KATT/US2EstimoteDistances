@@ -9,7 +9,6 @@
 #import "US2DistancesViewController.h"
 
 #import <ESTBeaconManager.h>
-#import <HexColors/HexColor.h>
 
 #import "US2BeaconWrapper.h"
 #import "US2BeaconBarView.h"

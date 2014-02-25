@@ -12,4 +12,5 @@
 
 
 @property (nonatomic, weak) IBOutlet UIView *mapView;
+@property (nonatomic) CGFloat pixelsPerMeter;
 @end

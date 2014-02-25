@@ -29,9 +29,9 @@
 }
 
 
-+(instancetype)beaconAnnotationViewWithBeacon: (US2BeaconWrapper*) beaconWrapper pixelRatio:(CGFloat) pixelsPerMeter {
++(instancetype)beaconAnnotationViewWithBeacon: (US2BeaconWrapper*) beaconWrapper delegate:(US2TriliterationViewController *)delegate{
     US2BeaconAnnotationView *annotationView = [[self alloc] initWithFrame:CGRectMake(0, 0, 20.0f, 20.0f)];
-    annotationView.pixelsPerMeter = pixelsPerMeter;
+    annotationView.delegate = delegate;
     annotationView.beaconWrapper = beaconWrapper;
 
     [annotationView setup];
@@ -65,7 +65,7 @@
         return 0;
     }
 
-    return distance*self.pixelsPerMeter;
+    return distance*self.delegate.pixelsPerMeter;
 }
 - (void)setupCircle
 {
@@ -95,8 +95,8 @@
 
 -(void) updateUI
 {
-    CGFloat x = self.pixelsPerMeter * self.beaconWrapper.coordinate.x;
-    CGFloat y = self.pixelsPerMeter * self.beaconWrapper.coordinate.y;
+    CGFloat x = self.delegate.pixelsPerMeter * self.beaconWrapper.coordinate.x;
+    CGFloat y = self.delegate.pixelsPerMeter * self.beaconWrapper.coordinate.y;
 
     self.center = CGPointMake(x, y);
 

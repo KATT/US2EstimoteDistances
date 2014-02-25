@@ -8,14 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "US2BeaconWrapper.h"
+#import "US2TriliterationViewController.h"
 
 @interface US2BeaconAnnotationView : UIView
 
-+(instancetype)beaconAnnotationViewWithBeacon: (US2BeaconWrapper*) beaconWrapper pixelRatio:(CGFloat) pixelsPerMeter;
++(instancetype)beaconAnnotationViewWithBeacon: (US2BeaconWrapper*) beaconWrapper delegate:(US2TriliterationViewController *) delegate;
 -(void) updateUI;
 
 
-@property (nonatomic) CGFloat pixelsPerMeter;
+@property (nonatomic, weak) US2TriliterationViewController *delegate;
+
 @property (nonatomic, strong) US2BeaconWrapper *beaconWrapper;
 
 @end

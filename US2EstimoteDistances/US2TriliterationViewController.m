@@ -2,7 +2,7 @@
 //  US2TriliterationViewController.m
 //  US2EstimoteDistances
 //
-//  Created by A on 14/02/2014.
+//  Created by Alexander Johansson on 14/02/2014.
 //  Copyright (c) 2014 ustwo. All rights reserved.
 //
 
@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong) UIView *deviceAnnotationView;
 
-@property (nonatomic) CGFloat pixelsPerMeter;
 @end
 
 @implementation US2TriliterationViewController
@@ -36,6 +35,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:US2BeaconDataSingletonUpdate object:nil];
 
+    self.view.autoresizesSubviews = NO;
 }
 
 -(void)updateUI
@@ -47,29 +47,42 @@
     [self updateTriliterlation];
 
 }
-
--(void) setupMapView
+-(void)updateMapViewSize
 {
-    DLog(@"Mapview: %@", self.mapView);
-
-    CGRect frame = CGRectMake(10, 10, self.view.frame.size.width-20, self.view.frame.size.height-20);
-    self.mapView.autoresizingMask = UIViewAutoresizingNone;
+    CGRect frame = CGRectMake(20.0, 30.0, self.view.frame.size.width-40.0, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - 50);
     self.mapView.frame = frame;
 
     // let's figure out the meter to px ratio
     // (TODO would be different if we had different w/h ratio)
+    DLog(@"maxCoordinate %.f", BEACONDATA.maxCoordinate.x);
     self.pixelsPerMeter = frame.size.width / BEACONDATA.maxCoordinate.x;
     DLog(@"pixelsPerMeter: %.2f", self.pixelsPerMeter);
+}
+
+-(void) setupMapView
+{
+    self.mapView.autoresizingMask = UIViewAutoresizingNone;
+
+    [self updateMapViewSize];
     
     
+}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    DLog(@"viewDidLayoutSubviews");
+
+    [self updateMapViewSize];
+    [self updateUI];
+
 }
 -(void)setupViews
 {
     [self setupMapView];
 
-    self.mintBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.mintBeacon pixelRatio:self.pixelsPerMeter];
-    self.blueBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.blueBeacon pixelRatio:self.pixelsPerMeter];
-    self.purpleBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.purpleBeacon pixelRatio:self.pixelsPerMeter];
+    self.mintBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.mintBeacon delegate:self];
+    self.blueBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.blueBeacon delegate:self];
+    self.purpleBeaconView     = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:BEACONDATA.purpleBeacon delegate:self];
 
 
     //
@@ -85,7 +98,6 @@
     [self.mapView addSubview:self.deviceAnnotationView];
 
 }
-
 
 -(void) updateTriliterlation
 {
