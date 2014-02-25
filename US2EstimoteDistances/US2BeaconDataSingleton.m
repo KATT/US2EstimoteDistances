@@ -8,28 +8,17 @@
 
 #import "US2BeaconDataSingleton.h"
 
-
 #import <HexColors/HexColor.h>
 
-#import "US2BeaconBarView.h"
+@interface US2BeaconDataSingleton () <US2BeaconManagerDelegate>
 
-@interface US2BeaconDataSingleton () <ESTBeaconManagerDelegate>
-
-@property (nonatomic, strong) ESTBeaconManager* beaconManager;
+@property (readwrite) US2BeaconManager* beaconManager;
 
 
 // Wrappers for our beacons
 @property (nonatomic, strong) US2BeaconWrapper *mintBeacon;
 @property (nonatomic, strong) US2BeaconWrapper *purpleBeacon;
 @property (nonatomic, strong) US2BeaconWrapper *blueBeacon;
-
-
-@property (readwrite) CGFloat maxDistance;
-@property (readwrite) CGFloat maxX;
-@property (readwrite) CGFloat maxY;
-
-@property (readwrite) NSMutableArray *beacons;
-
 @end
 
 @implementation US2BeaconDataSingleton
@@ -55,127 +44,41 @@
 }
 - (void) setup
 {
-    // Setup known beacons
-    // TODO read this from a plist or something
-    self.mintBeacon = [[US2BeaconWrapper alloc] initWithName:@"Mint" lightColor:[UIColor colorWithHexString:@"98c5a6"] darkColor:[UIColor colorWithHexString:@"5c7865"]];
-    self.purpleBeacon = [[US2BeaconWrapper alloc] initWithName:@"Purple" lightColor:[UIColor colorWithHexString:@"5c59a7"] darkColor:[UIColor colorWithHexString:@"3f3d73"]];
-    self.blueBeacon = [[US2BeaconWrapper alloc] initWithName:@"Blue" lightColor:[UIColor colorWithHexString:@"9fddf9"] darkColor:[UIColor colorWithHexString:@"6f9aad"]];
-
-    self.blueBeacon.coordinate = CGPointMake(3.7, 0.0);
-    self.purpleBeacon.coordinate = CGPointMake(6.2, 8.0);
-    self.mintBeacon.coordinate = CGPointMake(0.0, 8.0);
-
-    self.beacons = [NSMutableArray array];
-    [self.beacons addObject:self.mintBeacon];
-    [self.beacons addObject:self.blueBeacon];
-    [self.beacons addObject:self.purpleBeacon];
-
-    for (US2BeaconWrapper *beacon in self.beacons) {
-        self.maxX = MAX(self.maxX, beacon.coordinate.x);
-        self.maxY = MAX(self.maxY, beacon.coordinate.y);
-    }
-    self.maxCoordinate = CGPointMake(self.maxX, self.maxY);
-
     // Setup views
     [self setupBeaconManager];
+    [self setupBeaconWrappers];
+
 }
 
 
 -(void) setupBeaconManager
 {
-    // setup Estimote beacon manager
-    // create manager instance
-    self.beaconManager = [[ESTBeaconManager alloc] init];
+    self.beaconManager = [[US2BeaconManager alloc] init];
     self.beaconManager.delegate = self;
-    self.beaconManager.avoidUnknownStateBeacons = YES;
 
-    // create sample region object (you can additionaly pass major / minor values)
-    ESTBeaconRegion* region = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID
-                                                                  identifier:@"EstimoteSampleRegion"];
-
-    // start looking for estimote beacons in region
-    // when beacon ranged beaconManager:didRangeBeacons:inRegion: invoked
-    [self.beaconManager startRangingBeaconsInRegion:region];
 }
 
-
-#pragma mark - ESTBeaconManagerDelegate
-
-
--(void)beaconManager:(ESTBeaconManager *)manager
-     didRangeBeacons:(NSArray *)beacons
-            inRegion:(ESTBeaconRegion *)region
+-(void)setupBeaconWrappers
 {
-    for (ESTBeacon* beacon in beacons)
-    {
-        [self mapBeacon:beacon];
-    }
+    // Setup known beacons
+    // TODO read this from a plist or something
+    self.mintBeacon = [[US2BeaconWrapper alloc] initWithMajor:@35729 name:@"Mint" lightColor:[UIColor colorWithHexString:@"98c5a6"] darkColor:[UIColor colorWithHexString:@"5c7865"]];
+    self.purpleBeacon = [[US2BeaconWrapper alloc] initWithMajor:@50667 name:@"Purple" lightColor:[UIColor colorWithHexString:@"5c59a7"] darkColor:[UIColor colorWithHexString:@"3f3d73"]];
+    self.blueBeacon = [[US2BeaconWrapper alloc] initWithMajor: @4092 name:@"Blue" lightColor:[UIColor colorWithHexString:@"9fddf9"] darkColor:[UIColor colorWithHexString:@"6f9aad"]];
 
-    [self updateMaxDistance];
+    self.blueBeacon.coordinate = CGPointMake(3.7, 0.0);
+    self.purpleBeacon.coordinate = CGPointMake(6.2, 8.0);
+    self.mintBeacon.coordinate = CGPointMake(0.0, 8.0);
 
-    DLog(@"Closest beacon: %@. Distance: %.2f", self.closestBeacon.name, self.closestBeacon.beacon.distance.floatValue);
+    [self.beaconManager registerBeaconWrapper:self.mintBeacon];
+    [self.beaconManager registerBeaconWrapper:self.blueBeacon];
+    [self.beaconManager registerBeaconWrapper:self.purpleBeacon];
+}
+
+#pragma - US2BeaconManagerDelegate
+-(void) beaconManagerDidUpdate:(US2BeaconManager *)beaconManager
+{
     [[NSNotificationCenter defaultCenter] postNotificationName:US2BeaconDataSingletonUpdate object:self];
-}
-
-
--(void)mapBeacon: (ESTBeacon*)beacon
-{
-    if ([beacon.major isEqualToNumber: @35729]) {
-        // Mint
-        self.mintBeacon.beacon = beacon;
-    } else if ([beacon.major isEqualToNumber: @4092]) {
-        // Blue
-        self.blueBeacon.beacon = beacon;
-    } else if ([beacon.major isEqualToNumber: @50667]) {
-        // Purple
-        self.purpleBeacon.beacon = beacon;
-    } else {
-        DLog(@"Unidentified beacon found on distance %@. Beacon: %@", beacon.distance, beacon);
-    }
-
-}
-- (void) updateMaxDistance
-{
-    self.maxDistance = 0;
-
-    for (US2BeaconWrapper *beaconWrapper in self.beacons)
-    {
-        CGFloat distance = beaconWrapper.beacon.distance.floatValue;
-        if (distance > self.maxDistance)
-        {
-            self.maxDistance = distance;
-        }
-    }
-}
-#pragma mark - Public methods
-
--(US2BeaconWrapper*)closestBeacon
-{
-    US2BeaconWrapper *closestBeacon;
-    for (US2BeaconWrapper *beaconWrapper in self.beacons)
-    {
-        if (beaconWrapper.beacon.distance.floatValue < 0) continue;
-        
-        if (!closestBeacon || closestBeacon.beacon.distance.floatValue > beaconWrapper.beacon.distance.floatValue )
-        {
-            closestBeacon = beaconWrapper;
-        }
-    }
-
-    return closestBeacon;
-
-}
-
-- (US2BeaconWrapper *)beaconAtIndex: (NSUInteger) index
-{
-    return [self.beacons objectAtIndex:index];
-}
-
-
-- (NSArray *) activeBeacons
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isActive == YES"];
-    return [self.beacons filteredArrayUsingPredicate:predicate];
 }
 
 @end

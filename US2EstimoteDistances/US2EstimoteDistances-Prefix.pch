@@ -31,4 +31,4 @@
 
 
 #import "US2BeaconDataSingleton.h"
-#define BEACONDATA [US2BeaconDataSingleton sharedInstance]
+#define BEACONDATA [US2BeaconDataSingleton sharedInstance].beaconManager

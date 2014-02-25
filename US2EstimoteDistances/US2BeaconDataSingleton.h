@@ -8,6 +8,7 @@
 #import <ESTBeaconManager.h>
 
 #import "US2BeaconWrapper.h"
+#import "US2BeaconManager.h"
 
 #define US2BeaconDataSingletonUpdate @"US2BeaconDataSingletonUpdate"
 
@@ -16,19 +17,6 @@
 
 + (US2BeaconDataSingleton *)sharedInstance;
 
-- (US2BeaconWrapper *)beaconAtIndex: (NSUInteger) index;
-
-
-// Get the current max distance
-@property (nonatomic, assign, readonly) CGFloat maxDistance;
-
-// get the currently closest beacon
-@property (nonatomic, strong, readonly) US2BeaconWrapper *closestBeacon;
-
-// Get all the attached beacons
-@property (nonatomic, strong, readonly) NSMutableArray *beacons;
-@property (nonatomic, readonly) NSArray *activeBeacons;
-
-@property (nonatomic) CGPoint maxCoordinate;
+@property (nonatomic, strong, readonly) US2BeaconManager* beaconManager;
 
 @end

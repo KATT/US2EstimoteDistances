@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0F9A1518BD1A6F0093ECF8 /* US2BeaconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */; };
 		AA533E3918AD029E003BBD90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3818AD029E003BBD90 /* Foundation.framework */; };
 		AA533E3B18AD029E003BBD90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3A18AD029E003BBD90 /* CoreGraphics.framework */; };
 		AA533E3D18AD029E003BBD90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3C18AD029E003BBD90 /* UIKit.framework */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA0F9A1318BD1A6F0093ECF8 /* US2BeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconManager.h; sourceTree = "<group>"; };
+		AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconManager.m; sourceTree = "<group>"; };
 		AA533E3518AD029E003BBD90 /* US2EstimoteDistances.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = US2EstimoteDistances.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA533E3818AD029E003BBD90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA533E3A18AD029E003BBD90 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -105,6 +108,8 @@
 				AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */,
 				AAEC10AD18AE72FB00EC9ED8 /* US2BeaconDataSingleton.h */,
 				AAEC10AE18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m */,
+				AA0F9A1318BD1A6F0093ECF8 /* US2BeaconManager.h */,
+				AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				AAEC10AF18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m in Sources */,
 				AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */,
 				AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */,
+				AA0F9A1518BD1A6F0093ECF8 /* US2BeaconManager.m in Sources */,
 				AAEC10B218AE7CE200EC9ED8 /* US2TriliterationViewController.m in Sources */,
 				AA533E4518AD029E003BBD90 /* main.m in Sources */,
 				AA533E4918AD029E003BBD90 /* US2AppDelegate.m in Sources */,

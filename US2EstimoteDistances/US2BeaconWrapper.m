@@ -8,11 +8,19 @@
 
 #import "US2BeaconWrapper.h"
 
+@interface US2BeaconWrapper()
+@property (readwrite) NSNumber *major;
+@end
+
+
 @implementation US2BeaconWrapper
-- (id) initWithName:(NSString *)name lightColor:(UIColor *) lightColor darkColor:(UIColor *) darkColor
+
+
+- (id) initWithMajor:(NSNumber *)major name:(NSString *)name lightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor
 {
     if (self = [super init])
     {
+        self.major = major;
         self.name = name;
         
         self.lightColor = lightColor;
