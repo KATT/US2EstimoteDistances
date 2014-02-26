@@ -120,7 +120,7 @@
     US2BeaconWrapper *closestBeacon;
     for (US2BeaconWrapper *beaconWrapper in self.beacons)
     {
-        if (beaconWrapper.beacon.distance.floatValue < 0) continue;
+        if (!beaconWrapper.isActive) continue;
 
         if (!closestBeacon || closestBeacon.beacon.distance.floatValue > beaconWrapper.beacon.distance.floatValue )
         {

@@ -18,7 +18,6 @@
 
 - (US2BeaconWrapper *)beaconAtIndex: (NSUInteger) index;
 
-
 @property (nonatomic, weak) id<US2BeaconManagerDelegate> delegate;
 
 // Get the current max distance
