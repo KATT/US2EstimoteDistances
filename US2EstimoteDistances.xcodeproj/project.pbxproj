@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA0F9A1518BD1A6F0093ECF8 /* US2BeaconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */; };
 		AA0F9A1B18BE03D10093ECF8 /* US2WayFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F9A1A18BE03D10093ECF8 /* US2WayFinderViewController.m */; };
+		AA0F9A1E18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F9A1D18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m */; };
 		AA533E3918AD029E003BBD90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3818AD029E003BBD90 /* Foundation.framework */; };
 		AA533E3B18AD029E003BBD90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3A18AD029E003BBD90 /* CoreGraphics.framework */; };
 		AA533E3D18AD029E003BBD90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3C18AD029E003BBD90 /* UIKit.framework */; };
@@ -18,32 +19,22 @@
 		AA533E4C18AD029E003BBD90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA533E4A18AD029E003BBD90 /* Main.storyboard */; };
 		AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA533E4E18AD029E003BBD90 /* US2DistancesViewController.m */; };
 		AA533E5118AD029E003BBD90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA533E5018AD029E003BBD90 /* Images.xcassets */; };
-		AA533E5818AD029E003BBD90 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E5718AD029E003BBD90 /* XCTest.framework */; };
-		AA533E5918AD029E003BBD90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3818AD029E003BBD90 /* Foundation.framework */; };
-		AA533E5A18AD029E003BBD90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3C18AD029E003BBD90 /* UIKit.framework */; };
 		AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */; };
 		AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */; };
 		AAEC10AA18AD242600EC9ED8 /* US2BeaconBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A918AD242600EC9ED8 /* US2BeaconBarView.m */; };
 		AAEC10AF18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10AE18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m */; };
 		AAEC10B218AE7CE200EC9ED8 /* US2TriliterationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10B118AE7CE200EC9ED8 /* US2TriliterationViewController.m */; };
+		AAF758BE18BE4A6100746F02 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF758BD18BE4A6100746F02 /* AVFoundation.framework */; };
 		D777BFC5413C4C98AC853E2C /* libPods-US2EstimoteDistances.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD3A078A57546AF96599447 /* libPods-US2EstimoteDistances.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		AA533E5B18AD029E003BBD90 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA533E2D18AD029E003BBD90 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA533E3418AD029E003BBD90;
-			remoteInfo = US2EstimoteDistances;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AA0F9A1318BD1A6F0093ECF8 /* US2BeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconManager.h; sourceTree = "<group>"; };
 		AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconManager.m; sourceTree = "<group>"; };
 		AA0F9A1918BE03D10093ECF8 /* US2WayFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2WayFinderViewController.h; sourceTree = "<group>"; };
 		AA0F9A1A18BE03D10093ECF8 /* US2WayFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2WayFinderViewController.m; sourceTree = "<group>"; };
+		AA0F9A1C18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TKStateMachine+US2Extensions.h"; sourceTree = "<group>"; };
+		AA0F9A1D18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TKStateMachine+US2Extensions.m"; sourceTree = "<group>"; };
 		AA533E3518AD029E003BBD90 /* US2EstimoteDistances.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = US2EstimoteDistances.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA533E3818AD029E003BBD90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AA533E3A18AD029E003BBD90 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,7 +49,6 @@
 		AA533E4D18AD029E003BBD90 /* US2DistancesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = US2DistancesViewController.h; sourceTree = "<group>"; };
 		AA533E4E18AD029E003BBD90 /* US2DistancesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = US2DistancesViewController.m; sourceTree = "<group>"; };
 		AA533E5018AD029E003BBD90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AA533E5618AD029E003BBD90 /* US2EstimoteDistancesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = US2EstimoteDistancesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA533E5718AD029E003BBD90 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AABEEC8718B6500C00AD844F /* US2BeaconAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconAnnotationView.h; sourceTree = "<group>"; };
 		AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconAnnotationView.m; sourceTree = "<group>"; };
@@ -70,6 +60,7 @@
 		AAEC10AE18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconDataSingleton.m; sourceTree = "<group>"; };
 		AAEC10B018AE7CE200EC9ED8 /* US2TriliterationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2TriliterationViewController.h; sourceTree = "<group>"; };
 		AAEC10B118AE7CE200EC9ED8 /* US2TriliterationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2TriliterationViewController.m; sourceTree = "<group>"; };
+		AAF758BD18BE4A6100746F02 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BDD3A078A57546AF96599447 /* libPods-US2EstimoteDistances.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-US2EstimoteDistances.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52BF9597E6E4799A8BFDCAF /* Pods-US2EstimoteDistances.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US2EstimoteDistances.xcconfig"; path = "Pods/Pods-US2EstimoteDistances.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,20 +70,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAF758BE18BE4A6100746F02 /* AVFoundation.framework in Frameworks */,
 				AA533E3B18AD029E003BBD90 /* CoreGraphics.framework in Frameworks */,
 				AA533E3D18AD029E003BBD90 /* UIKit.framework in Frameworks */,
 				AA533E3918AD029E003BBD90 /* Foundation.framework in Frameworks */,
 				D777BFC5413C4C98AC853E2C /* libPods-US2EstimoteDistances.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA533E5318AD029E003BBD90 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AA533E5818AD029E003BBD90 /* XCTest.framework in Frameworks */,
-				AA533E5A18AD029E003BBD90 /* UIKit.framework in Frameworks */,
-				AA533E5918AD029E003BBD90 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +114,8 @@
 				AAEC10B118AE7CE200EC9ED8 /* US2TriliterationViewController.m */,
 				AA0F9A1918BE03D10093ECF8 /* US2WayFinderViewController.h */,
 				AA0F9A1A18BE03D10093ECF8 /* US2WayFinderViewController.m */,
+				AA0F9A1C18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.h */,
+				AA0F9A1D18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -150,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				AA533E3518AD029E003BBD90 /* US2EstimoteDistances.app */,
-				AA533E5618AD029E003BBD90 /* US2EstimoteDistancesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,6 +141,7 @@
 		AA533E3718AD029E003BBD90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAF758BD18BE4A6100746F02 /* AVFoundation.framework */,
 				AA533E3818AD029E003BBD90 /* Foundation.framework */,
 				AA533E3A18AD029E003BBD90 /* CoreGraphics.framework */,
 				AA533E3C18AD029E003BBD90 /* UIKit.framework */,
@@ -181,6 +165,7 @@
 		AA533E3F18AD029E003BBD90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AAF758BF18BE4E3E00746F02 /* Audio */,
 				AA533E4718AD029E003BBD90 /* US2AppDelegate.h */,
 				AA533E4818AD029E003BBD90 /* US2AppDelegate.m */,
 				AA533E4A18AD029E003BBD90 /* Main.storyboard */,
@@ -191,6 +176,13 @@
 				AA533E4618AD029E003BBD90 /* US2EstimoteDistances-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AAF758BF18BE4E3E00746F02 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,24 +207,6 @@
 			productReference = AA533E3518AD029E003BBD90 /* US2EstimoteDistances.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AA533E5518AD029E003BBD90 /* US2EstimoteDistancesTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA533E6A18AD029E003BBD90 /* Build configuration list for PBXNativeTarget "US2EstimoteDistancesTests" */;
-			buildPhases = (
-				AA533E5218AD029E003BBD90 /* Sources */,
-				AA533E5318AD029E003BBD90 /* Frameworks */,
-				AA533E5418AD029E003BBD90 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AA533E5C18AD029E003BBD90 /* PBXTargetDependency */,
-			);
-			name = US2EstimoteDistancesTests;
-			productName = US2EstimoteDistancesTests;
-			productReference = AA533E5618AD029E003BBD90 /* US2EstimoteDistancesTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -245,9 +219,6 @@
 				TargetAttributes = {
 					AA533E3418AD029E003BBD90 = {
 						DevelopmentTeam = 8Z3V4F58RK;
-					};
-					AA533E5518AD029E003BBD90 = {
-						TestTargetID = AA533E3418AD029E003BBD90;
 					};
 				};
 			};
@@ -265,7 +236,6 @@
 			projectRoot = "";
 			targets = (
 				AA533E3418AD029E003BBD90 /* US2EstimoteDistances */,
-				AA533E5518AD029E003BBD90 /* US2EstimoteDistancesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -278,13 +248,6 @@
 				AA533E5118AD029E003BBD90 /* Images.xcassets in Resources */,
 				AA533E4318AD029E003BBD90 /* InfoPlist.strings in Resources */,
 				AA533E4C18AD029E003BBD90 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AA533E5418AD029E003BBD90 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +293,7 @@
 			files = (
 				AAEC10AA18AD242600EC9ED8 /* US2BeaconBarView.m in Sources */,
 				AA0F9A1B18BE03D10093ECF8 /* US2WayFinderViewController.m in Sources */,
+				AA0F9A1E18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m in Sources */,
 				AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */,
 				AAEC10AF18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m in Sources */,
 				AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */,
@@ -341,22 +305,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AA533E5218AD029E003BBD90 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		AA533E5C18AD029E003BBD90 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA533E3418AD029E003BBD90 /* US2EstimoteDistances */;
-			targetProxy = AA533E5B18AD029E003BBD90 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AA533E4118AD029E003BBD90 /* InfoPlist.strings */ = {
@@ -483,48 +432,6 @@
 			};
 			name = Release;
 		};
-		AA533E6B18AD029E003BBD90 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/US2EstimoteDistances.app/US2EstimoteDistances";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "US2EstimoteDistances/US2EstimoteDistances-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "US2EstimoteDistancesTests/US2EstimoteDistancesTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		AA533E6C18AD029E003BBD90 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/US2EstimoteDistances.app/US2EstimoteDistances";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "US2EstimoteDistances/US2EstimoteDistances-Prefix.pch";
-				INFOPLIST_FILE = "US2EstimoteDistancesTests/US2EstimoteDistancesTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -542,15 +449,6 @@
 			buildConfigurations = (
 				AA533E6818AD029E003BBD90 /* Debug */,
 				AA533E6918AD029E003BBD90 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA533E6A18AD029E003BBD90 /* Build configuration list for PBXNativeTarget "US2EstimoteDistancesTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AA533E6B18AD029E003BBD90 /* Debug */,
-				AA533E6C18AD029E003BBD90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

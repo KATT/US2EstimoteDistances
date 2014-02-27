@@ -32,6 +32,16 @@
 
 -(BOOL) isActive
 {
-    return (self.beacon && self.beacon.distance.floatValue >= 0);
+    return (self.beacon && self.beacon.distance.floatValue > 0.0);
 }
+
++(instancetype)beaconWrapperWithMajor:(NSNumber *)major name:(NSString *)name
+{
+    US2BeaconWrapper *beaconWrapper = [[self alloc] init];
+    beaconWrapper.major = major;
+    beaconWrapper.name = name;
+
+    return beaconWrapper;
+}
+
 @end

@@ -27,8 +27,8 @@
 @property (nonatomic, strong, readonly) US2BeaconWrapper *closestBeacon;
 
 // Get all the attached beacons
-@property (nonatomic, strong, readonly) NSMutableArray *beacons;
-@property (nonatomic, readonly) NSArray *activeBeacons;
+@property (nonatomic, strong, readonly) NSMutableArray *beaconWrappers;
+@property (nonatomic, readonly) NSArray *activeBeaconWrappers;
 
 
 @property (nonatomic, readonly) CGPoint maxCoordinate;

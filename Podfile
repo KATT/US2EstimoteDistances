@@ -4,8 +4,6 @@ platform :ios, "7.0"
 target "US2EstimoteDistances" do
 pod 'EstimoteSDK'
 pod 'HexColors'
+pod 'TransitionKit', :git => 'https://github.com/KATT/TransitionKit.git'
 end
 
-target "US2EstimoteDistancesTests" do
-
-end

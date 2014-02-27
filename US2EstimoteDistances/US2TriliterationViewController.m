@@ -80,7 +80,7 @@
 -(void)setupViews
 {
     [self setupMapView];
-    for (US2BeaconWrapper *beaconWrapper in BEACONDATA.beacons) {
+    for (US2BeaconWrapper *beaconWrapper in BEACONDATA.beaconWrappers) {
         US2BeaconAnnotationView *beaconAnnotationView = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:beaconWrapper delegate:self];
         [self.beaconViews addObject:beaconAnnotationView];
         [self.mapView addSubview:beaconAnnotationView];
@@ -98,7 +98,7 @@
 
 -(void) updateTriliterlation
 {
-    if (BEACONDATA.activeBeacons.count < 3) {
+    if (BEACONDATA.activeBeaconWrappers.count < 3) {
         self.deviceAnnotationView.alpha = 0.3;
         return;
     }

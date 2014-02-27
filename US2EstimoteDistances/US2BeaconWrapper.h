@@ -11,6 +11,7 @@
 @class ESTBeacon;
 @interface US2BeaconWrapper : NSObject
 
+
 - (id) initWithMajor:(NSNumber*)major name:(NSString*)name lightColor:(UIColor *) lightColor darkColor:(UIColor *) darkColor;
 
 @property (nonatomic, readonly) NSNumber *major;
@@ -26,4 +27,6 @@
 
 @property (nonatomic, readonly) BOOL isActive;
 
+
++(instancetype)beaconWrapperWithMajor:(NSNumber*)major name:(NSString*)name;
 @end

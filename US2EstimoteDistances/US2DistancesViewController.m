@@ -38,7 +38,7 @@
     self.view.autoresizesSubviews = YES;
     CGFloat height = self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height;
 
-    for (US2BeaconWrapper *beaconWrapper in BEACONDATA.beacons) {
+    for (US2BeaconWrapper *beaconWrapper in BEACONDATA.beaconWrappers) {
         US2BeaconBarView *beaconBarView = [[US2BeaconBarView alloc] initWithFrame:CGRectMake(0, 0, 0, height) beaconWrapper:beaconWrapper];
         [self.beaconViews addObject:beaconBarView];
         [self.view addSubview:beaconBarView];
