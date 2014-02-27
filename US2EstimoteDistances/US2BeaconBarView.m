@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UIView *barView;
 @property (nonatomic, strong) UILabel *metricLabel;
 @property (readwrite) US2BeaconWrapper *beaconWrapper;
+
+@property (nonatomic) CGFloat lastDistance;
 @end
 
 @implementation US2BeaconBarView
@@ -39,7 +41,7 @@
     self.autoresizingMask = UIViewAutoresizingFlexibleHeight |UIViewAutoresizingFlexibleWidth;
 
     self.barView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height, self.frame.size.width, 0)];
-    self.metricLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 50, self.frame.size.width, 50)];
+    self.metricLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 50, self.frame.size.width-10, 50)];
 
     self.metricLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 
@@ -59,9 +61,18 @@
     if (distance <= 0.0)
     {
         self.alpha = 0.3;
-        return;
+        distance = self.lastDistance;
+        if (distance <= 0.0)
+        {
+            return;
+        }
     }
-    self.alpha = 1.0;
+    else
+    {
+        self.lastDistance = distance;
+        self.alpha = 1.0;
+    }
+
 //    DLog(@"frame: %@", NSStringFromCGRect(self.frame));
     CGFloat fill = distance/(maxDistance * 1.1);
 
@@ -71,7 +82,7 @@
     self.barView.frame = newRect;
 
 
-    self.metricLabel.text = [NSString stringWithFormat:@"%.2f m", self.beaconWrapper.beacon.distance.floatValue];
+    self.metricLabel.text = [NSString stringWithFormat:@"%.2f m", distance];
     self.metricLabel.numberOfLines = 1;
     self.metricLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
     self.metricLabel.adjustsFontSizeToFitWidth = YES;
@@ -81,6 +92,8 @@
     self.metricLabel.backgroundColor = [UIColor clearColor];
     self.metricLabel.textColor = [UIColor whiteColor];
     self.metricLabel.textAlignment = NSTextAlignmentCenter;
+
+    self.metricLabel.frame = CGRectMake(5, self.frame.size.height - 50, self.frame.size.width-10, 50);
 
 
 //    self.metricLabel.shadowColor = [UIColor darkTextColor];
