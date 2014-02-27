@@ -69,10 +69,10 @@
     [self addBeacons: beacons];
     [self mapBeacons:self.discoveredBeacons];
 
-    DLog(@"%u discovered beacons.", self.discoveredBeacons.count);
+//    DLog(@"%u discovered beacons.", self.discoveredBeacons.count);
     [self updateMaxDistance];
 
-    DLog(@"Closest beacon: %@. Distance: %.2f", self.closestBeacon.name, self.closestBeacon.beacon.distance.floatValue);
+//    DLog(@"Closest beacon: %@. Distance: %.2f", self.closestBeacon.name, self.closestBeacon.beacon.distance.floatValue);
     [self.delegate beaconManagerDidUpdate:self];
 }
 
