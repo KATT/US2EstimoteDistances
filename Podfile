@@ -5,5 +5,6 @@ target "US2EstimoteDistances" do
 pod 'EstimoteSDK'
 pod 'HexColors'
 pod 'TransitionKit', :git => 'https://github.com/KATT/TransitionKit.git'
+pod 'UIColor+US2Colors', :git => 'https://github.com/ustwo/UIColor-US2Colors.git'
 end
 

@@ -7,7 +7,7 @@
 //
 
 #import "US2ColorQueue.h"
-#import "UIColor+US2Colors.h"
+#import <UIColor+US2Colors/UIColor+US2Colors.h>
 
 @interface US2ColorQueue()
 
@@ -28,7 +28,7 @@
 - (void)setup
 {
     self.cursor = 0;
-    self.colors = @[UIColor.pigletColor, UIColor.passionColor, UIColor.ohRaColor, UIColor.honeyColor, UIColor.jeezzColor];
+    self.colors = @[UIColor.pigletColor, UIColor.passionColor, UIColor.ohRaColor, UIColor.honeyColor, UIColor.jeezzColor, UIColor.potColor, UIColor.mareColor, UIColor.bluColor, UIColor.rainColor];
 }
 
 - (UIColor *)nextColor

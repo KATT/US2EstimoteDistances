@@ -13,7 +13,6 @@
 		AA3E77E418C4C13A00C133EF /* turn-right.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AA3E77E118C4C13A00C133EF /* turn-right.m4a */; };
 		AA3E77E518C4C13A00C133EF /* turn-left.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AA3E77E218C4C13A00C133EF /* turn-left.m4a */; };
 		AA3E77E618C4C13A00C133EF /* exit-door-left.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AA3E77E318C4C13A00C133EF /* exit-door-left.m4a */; };
-		AA4E65A318BF7CEB0047FF58 /* UIColor+US2Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4E65A218BF7CEB0047FF58 /* UIColor+US2Colors.m */; };
 		AA4E65A918BF80A10047FF58 /* US2ColorQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4E65A818BF80A10047FF58 /* US2ColorQueue.m */; };
 		AA533E3918AD029E003BBD90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3818AD029E003BBD90 /* Foundation.framework */; };
 		AA533E3B18AD029E003BBD90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3A18AD029E003BBD90 /* CoreGraphics.framework */; };
@@ -43,8 +42,6 @@
 		AA3E77E118C4C13A00C133EF /* turn-right.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "turn-right.m4a"; sourceTree = "<group>"; };
 		AA3E77E218C4C13A00C133EF /* turn-left.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "turn-left.m4a"; sourceTree = "<group>"; };
 		AA3E77E318C4C13A00C133EF /* exit-door-left.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "exit-door-left.m4a"; sourceTree = "<group>"; };
-		AA4E65A118BF7CEB0047FF58 /* UIColor+US2Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+US2Colors.h"; sourceTree = "<group>"; };
-		AA4E65A218BF7CEB0047FF58 /* UIColor+US2Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+US2Colors.m"; sourceTree = "<group>"; };
 		AA4E65A718BF80A10047FF58 /* US2ColorQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2ColorQueue.h; sourceTree = "<group>"; };
 		AA4E65A818BF80A10047FF58 /* US2ColorQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2ColorQueue.m; sourceTree = "<group>"; };
 		AA533E3518AD029E003BBD90 /* US2EstimoteDistances.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = US2EstimoteDistances.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,8 +183,6 @@
 				AA533E4118AD029E003BBD90 /* InfoPlist.strings */,
 				AA533E4418AD029E003BBD90 /* main.m */,
 				AA533E4618AD029E003BBD90 /* US2EstimoteDistances-Prefix.pch */,
-				AA4E65A118BF7CEB0047FF58 /* UIColor+US2Colors.h */,
-				AA4E65A218BF7CEB0047FF58 /* UIColor+US2Colors.m */,
 				AA4E65A718BF80A10047FF58 /* US2ColorQueue.h */,
 				AA4E65A818BF80A10047FF58 /* US2ColorQueue.m */,
 			);
@@ -320,7 +315,6 @@
 				AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */,
 				AAEC10AF18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m in Sources */,
 				AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */,
-				AA4E65A318BF7CEB0047FF58 /* UIColor+US2Colors.m in Sources */,
 				AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */,
 				AA0F9A1518BD1A6F0093ECF8 /* US2BeaconManager.m in Sources */,
 				AAEC10B218AE7CE200EC9ED8 /* US2TriliterationViewController.m in Sources */,
