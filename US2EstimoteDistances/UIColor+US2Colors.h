@@ -10,10 +10,33 @@
 
 @interface UIColor (US2Colors)
 
-+ (UIColor *)pigletColor;
-+ (UIColor *)passionColor;
-+ (UIColor *)ohRaColor;
-+ (UIColor *)honeyColor;
-+ (UIColor *)jeezzColor;
++ (instancetype)pigletColor;
++ (instancetype)passionColor;
++ (instancetype)ohRaColor;
++ (instancetype)honeyColor;
++ (instancetype)jeezzColor;
++ (instancetype)potColor;
++ (instancetype)mareColor;
++ (instancetype)bluColor;
++ (instancetype)rainColor;
+
++ (instancetype)sPigletColor;
++ (instancetype)sPassionColor;
++ (instancetype)sOhRahColor;
++ (instancetype)sHoneyColor;
++ (instancetype)sJeezzColor;
++ (instancetype)sPotColor;
++ (instancetype)sMareColor;
++ (instancetype)sBluColor;
++ (instancetype)sNavyColor;
++ (instancetype)sRainColor;
+
++ (instancetype)nonWhiteColor;
++ (instancetype)grey01Color;
++ (instancetype)grey02Color;
++ (instancetype)grey03Color;
++ (instancetype)grey04Color;
++ (instancetype)nonBlackColor;
+
 
 @end
