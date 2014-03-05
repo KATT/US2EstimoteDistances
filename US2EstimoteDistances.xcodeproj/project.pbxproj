@@ -14,6 +14,7 @@
 		AA3E77E518C4C13A00C133EF /* turn-left.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AA3E77E218C4C13A00C133EF /* turn-left.m4a */; };
 		AA3E77E618C4C13A00C133EF /* exit-door-left.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AA3E77E318C4C13A00C133EF /* exit-door-left.m4a */; };
 		AA3E77E818C76B8F00C133EF /* almost-there.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AA3E77E718C76B8F00C133EF /* almost-there.m4a */; };
+		AA3E77EB18C77D0900C133EF /* US2WayFinderInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E77EA18C77D0900C133EF /* US2WayFinderInstruction.m */; };
 		AA4E65A918BF80A10047FF58 /* US2ColorQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4E65A818BF80A10047FF58 /* US2ColorQueue.m */; };
 		AA533E3918AD029E003BBD90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3818AD029E003BBD90 /* Foundation.framework */; };
 		AA533E3B18AD029E003BBD90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA533E3A18AD029E003BBD90 /* CoreGraphics.framework */; };
@@ -44,6 +45,8 @@
 		AA3E77E218C4C13A00C133EF /* turn-left.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "turn-left.m4a"; sourceTree = "<group>"; };
 		AA3E77E318C4C13A00C133EF /* exit-door-left.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "exit-door-left.m4a"; sourceTree = "<group>"; };
 		AA3E77E718C76B8F00C133EF /* almost-there.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "almost-there.m4a"; sourceTree = "<group>"; };
+		AA3E77E918C77D0900C133EF /* US2WayFinderInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2WayFinderInstruction.h; sourceTree = "<group>"; };
+		AA3E77EA18C77D0900C133EF /* US2WayFinderInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2WayFinderInstruction.m; sourceTree = "<group>"; };
 		AA4E65A718BF80A10047FF58 /* US2ColorQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2ColorQueue.h; sourceTree = "<group>"; };
 		AA4E65A818BF80A10047FF58 /* US2ColorQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2ColorQueue.m; sourceTree = "<group>"; };
 		AA533E3518AD029E003BBD90 /* US2EstimoteDistances.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = US2EstimoteDistances.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +104,8 @@
 				AAEC10AE18AE72FB00EC9ED8 /* US2BeaconDataSingleton.m */,
 				AA0F9A1318BD1A6F0093ECF8 /* US2BeaconManager.h */,
 				AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */,
+				AA3E77E918C77D0900C133EF /* US2WayFinderInstruction.h */,
+				AA3E77EA18C77D0900C133EF /* US2WayFinderInstruction.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				AA0F9A1518BD1A6F0093ECF8 /* US2BeaconManager.m in Sources */,
 				AAEC10B218AE7CE200EC9ED8 /* US2TriliterationViewController.m in Sources */,
 				AA533E4518AD029E003BBD90 /* main.m in Sources */,
+				AA3E77EB18C77D0900C133EF /* US2WayFinderInstruction.m in Sources */,
 				AA533E4918AD029E003BBD90 /* US2AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
