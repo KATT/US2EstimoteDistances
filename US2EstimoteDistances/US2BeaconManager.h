@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ESTBeaconManager.h>
+
+#import "US2BeaconWrapper.h"
 
 @class US2BeaconManager;
 @protocol US2BeaconManagerDelegate

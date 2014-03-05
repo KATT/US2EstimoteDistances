@@ -13,11 +13,14 @@
 #import "US2TriliterationViewController.h"
 #import "US2BeaconAnnotationView.h"
 
-@interface US2TriliterationViewController ()
+@interface US2TriliterationViewController ()<US2BeaconManagerDelegate>
 @property (nonatomic, weak) CAShapeLayer *circleLayer;
 
 @property (nonatomic, strong) NSMutableArray *beaconViews;
 @property (nonatomic, strong) UIView *deviceAnnotationView;
+
+
+@property (nonatomic, strong) US2BeaconManager *beaconManager;
 
 @end
 
@@ -30,57 +33,43 @@
 
     self.beaconViews = [NSMutableArray array];
     // Setup views
+    [self setupBeaconWrappers];
     [self setupViews];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:US2BeaconDataSingletonUpdate object:nil];
 
     self.view.autoresizesSubviews = NO;
 }
 
--(void)updateUI
+-(void)setupBeaconWrappers
 {
-    for (US2BeaconAnnotationView *beaconAnnotationView in self.beaconViews) {
-        [beaconAnnotationView updateUI];
-    }
+    self.beaconManager = [[US2BeaconManager alloc] init];
+    self.beaconManager.delegate = self;
 
-    [UIView animateWithDuration:0.6f delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self updateTriliterlation];
-    } completion:nil];
+    // Setup known beacons
+    // TODO read this from a plist or something
+    US2BeaconWrapper *mintBeacon = [[US2BeaconWrapper alloc] initWithMajor:@35729 name:@"Mint" lightColor:[UIColor colorWithHexString:@"98c5a6"] darkColor:[UIColor colorWithHexString:@"5c7865"]];
+    US2BeaconWrapper *purpleBeacon = [[US2BeaconWrapper alloc] initWithMajor:@50667 name:@"Purple" lightColor:[UIColor colorWithHexString:@"5c59a7"] darkColor:[UIColor colorWithHexString:@"3f3d73"]];
+    US2BeaconWrapper *blueBeacon = [[US2BeaconWrapper alloc] initWithMajor: @4092 name:@"Blue" lightColor:[UIColor colorWithHexString:@"9fddf9"] darkColor:[UIColor colorWithHexString:@"6f9aad"]];
 
+    blueBeacon.coordinate = CGPointMake(3.7, 0.0);
+    purpleBeacon.coordinate = CGPointMake(6.2, 8.0);
+    mintBeacon.coordinate = CGPointMake(0.0, 8.0);
+
+    [self.beaconManager registerBeaconWrapper:mintBeacon];
+    [self.beaconManager registerBeaconWrapper:blueBeacon];
+    [self.beaconManager registerBeaconWrapper:purpleBeacon];
 }
--(void)updateMapViewSize
-{
-    CGRect frame = CGRectMake(20.0, 30.0, self.view.frame.size.width-40.0, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - 50);
-    self.mapView.frame = frame;
-
-    // let's figure out the meter to px ratio
-    // (TODO would be different if we had different w/h ratio)
-    DLog(@"maxCoordinate %.f", BEACONDATA.maxCoordinate.x);
-    self.pixelsPerMeter = frame.size.width / BEACONDATA.maxCoordinate.x;
-    DLog(@"pixelsPerMeter: %.2f", self.pixelsPerMeter);
-}
-
 -(void) setupMapView
 {
     self.mapView.autoresizingMask = UIViewAutoresizingNone;
 
     [self updateMapViewSize];
-    
-    
-}
--(void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    DLog(@"viewDidLayoutSubviews");
 
-    [self updateMapViewSize];
-    [self updateUI];
 
 }
 -(void)setupViews
 {
     [self setupMapView];
-    for (US2BeaconWrapper *beaconWrapper in BEACONDATA.beaconWrappers) {
+    for (US2BeaconWrapper *beaconWrapper in self.beaconManager.beaconWrappers) {
         US2BeaconAnnotationView *beaconAnnotationView = [US2BeaconAnnotationView beaconAnnotationViewWithBeacon:beaconWrapper delegate:self];
         [self.beaconViews addObject:beaconAnnotationView];
         [self.mapView addSubview:beaconAnnotationView];
@@ -95,10 +84,54 @@
     [self.mapView addSubview:self.deviceAnnotationView];
 
 }
+#pragma mark - update UI
+
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    DLog(@"viewDidLayoutSubviews");
+
+    [self updateMapViewSize];
+    [self updateUI];
+
+}
+
+
+-(void)updateUI
+{
+    for (US2BeaconAnnotationView *beaconAnnotationView in self.beaconViews) {
+        [beaconAnnotationView updateUI];
+    }
+
+    [UIView animateWithDuration:0.6f delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self updateTriliterlation];
+    } completion:nil];
+
+}
+
+
+-(void)beaconManagerDidUpdate:(US2BeaconManager *)beaconManager
+{
+    [self updateUI];
+}
+-(void)updateMapViewSize
+{
+    CGRect frame = CGRectMake(20.0, 30.0, self.view.frame.size.width-40.0, self.view.frame.size.height - self.tabBarController.tabBar.frame.size.height - 50);
+    self.mapView.frame = frame;
+
+    // let's figure out the meter to px ratio
+    // (TODO would be different if we had different w/h ratio)
+    DLog(@"maxCoordinate %.f", self.beaconManager.maxCoordinate.x);
+    self.pixelsPerMeter = frame.size.width / self.beaconManager.maxCoordinate.x;
+    DLog(@"pixelsPerMeter: %.2f", self.pixelsPerMeter);
+}
+
+
 
 -(void) updateTriliterlation
 {
-    if (BEACONDATA.activeBeaconWrappers.count < 3) {
+    if (self.beaconManager.activeBeaconWrappers.count < 3) {
         self.deviceAnnotationView.alpha = 0.3;
         return;
     }
@@ -109,22 +142,22 @@
     //P1,P2,P3 is the point and 2-dimension vector
     NSMutableArray *P1 = [[NSMutableArray alloc] initWithCapacity:0];
 
-    [P1 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:0].coordinate.x]];
-    [P1 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:0].coordinate.y]];
+    [P1 addObject:[NSNumber numberWithDouble:[self.beaconManager beaconAtIndex:0].coordinate.x]];
+    [P1 addObject:[NSNumber numberWithDouble:[self.beaconManager beaconAtIndex:0].coordinate.y]];
 
 
     NSMutableArray *P2 = [[NSMutableArray alloc] initWithCapacity:0];
-    [P2 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:1].coordinate.x]];
-    [P2 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:1].coordinate.y]];
+    [P2 addObject:[NSNumber numberWithDouble:[self.beaconManager beaconAtIndex:1].coordinate.x]];
+    [P2 addObject:[NSNumber numberWithDouble:[self.beaconManager beaconAtIndex:1].coordinate.y]];
 
     NSMutableArray *P3 = [[NSMutableArray alloc] initWithCapacity:0];
-    [P3 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:2].coordinate.x]];
-    [P3 addObject:[NSNumber numberWithDouble:[BEACONDATA beaconAtIndex:2].coordinate.y]];
+    [P3 addObject:[NSNumber numberWithDouble:[self.beaconManager beaconAtIndex:2].coordinate.x]];
+    [P3 addObject:[NSNumber numberWithDouble:[self.beaconManager beaconAtIndex:2].coordinate.y]];
 
     //this is the distance between all the points and the unknown point
-    double DistA = [BEACONDATA beaconAtIndex:0].beacon.distance.doubleValue;
-    double DistB = [BEACONDATA beaconAtIndex:1].beacon.distance.doubleValue;
-    double DistC = [BEACONDATA beaconAtIndex:2].beacon.distance.doubleValue;
+    double DistA = [self.beaconManager beaconAtIndex:0].beacon.distance.doubleValue;
+    double DistB = [self.beaconManager beaconAtIndex:1].beacon.distance.doubleValue;
+    double DistC = [self.beaconManager beaconAtIndex:2].beacon.distance.doubleValue;
 
     // ex = (P2 - P1)/(numpy.linalg.norm(P2 - P1))
     NSMutableArray *ex = [[NSMutableArray alloc] initWithCapacity:0];
