@@ -32,9 +32,12 @@ NSString *const kGoal = @"kGoal";
 NSString *const kExitDoorLeftAudio = @"exit-door-left.m4a";
 NSString *const kTurnLeftAudio = @"turn-left.m4a";
 NSString *const kTurnRightAudio = @"turn-right.m4a";
+NSString *const kAlmostThereAudio = @"almost-there.m4a";
 
 
 @interface US2WayFinderViewController ()<US2BeaconManagerDelegate>
+
+@property (nonatomic, weak) AVAudioPlayer *lastSound;
 
 // ui
 @property (nonatomic, strong) UILabel *currentStateLabel;
@@ -86,7 +89,7 @@ NSString *const kTurnRightAudio = @"turn-right.m4a";
         if (transition.sourceState == state) return;
         DLog(@"instruct");
 
-        [self doInstruction:@"Exit door and head left for 10m." audioFileName:kExitDoorLeftAudio];
+        [self doInstruction:@"Exit door and head left for 10m." audioFileName:kTurnLeftAudio];
     }];
     //
     [walkingTowardsWP3 setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
@@ -149,7 +152,7 @@ NSString *const kTurnRightAudio = @"turn-right.m4a";
 {
     dispatch_queue_t backgroundQueue = dispatch_queue_create("com.ustwo.background", 0);
 
-    self.audioFileNames = @[kExitDoorLeftAudio, kTurnLeftAudio, kTurnRightAudio];
+    self.audioFileNames = @[kExitDoorLeftAudio, kTurnLeftAudio, kTurnRightAudio, kAlmostThereAudio];
     self.audios = [NSMutableDictionary dictionaryWithCapacity:self.audioFileNames.count];
 
     dispatch_async(backgroundQueue, ^{
@@ -249,6 +252,15 @@ NSString *const kTurnRightAudio = @"turn-right.m4a";
         {
             [self.stateMachine fireEvent:kSecondBeaconClose userInfo:nil error:nil];
         }
+        else
+        {
+            static dispatch_once_t once;
+
+            dispatch_once(&once, ^{
+                [self doInstruction:@"Almost there!" audioFileName:kAlmostThereAudio];
+            });
+
+        }
     }
 
     if (self.beaconManager.closestBeacon == self.purpleBeacon2)
@@ -270,6 +282,7 @@ NSString *const kTurnRightAudio = @"turn-right.m4a";
     }
     [audioPlayer play];
 
+    self.lastSound = audioPlayer;
     self.nextPage = [self viewWithText:text];
 
     [UIView transitionFromView:self.currentPage toView:self.nextPage duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished) {
@@ -296,5 +309,24 @@ NSString *const kTurnRightAudio = @"turn-right.m4a";
         // trigger event
         // audio update
         // screen update
+}
+
+#pragma mark - shake
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        DLog(@"Shake!");
+        if (!self.lastSound.isPlaying)
+        {
+            DLog(@"play sound!");
+            [self.lastSound play];
+        }
+    }
 }
 @end
