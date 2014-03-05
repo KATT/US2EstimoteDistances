@@ -32,3 +32,5 @@
 #import "UIColor+US2Colors.h"
 #import "US2BeaconDataSingleton.h"
 #define BEACONDATA [US2BeaconDataSingleton sharedInstance].beaconManager
+
+#import <UIColor+US2Colors/UIColor+US2Colors.h>

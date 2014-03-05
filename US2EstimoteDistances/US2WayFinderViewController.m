@@ -181,7 +181,7 @@ NSString *const kTurnRightAudio = @"turn-right.m4a";
     textLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
     textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:30.0f];
     textLabel.backgroundColor = [UIColor clearColor];
-    textLabel.textColor = [UIColor whiteColor];
+    textLabel.textColor = [UIColor nonWhiteColor];
     textLabel.textAlignment = NSTextAlignmentCenter;
 
     [view addSubview:textLabel];

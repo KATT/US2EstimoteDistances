@@ -7,7 +7,6 @@
 //
 
 #import "US2ColorQueue.h"
-#import <UIColor+US2Colors/UIColor+US2Colors.h>
 
 @interface US2ColorQueue()
 
