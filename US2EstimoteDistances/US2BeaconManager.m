@@ -17,7 +17,7 @@
 @property (readwrite) NSMutableArray *beaconWrappers;
 
 
-@property (nonatomic, strong) NSMutableSet *discoveredBeacons;
+@property (nonatomic, strong) NSMutableSet *discoveredBeacons; // should live statically
 @end
 
 @implementation US2BeaconManager
