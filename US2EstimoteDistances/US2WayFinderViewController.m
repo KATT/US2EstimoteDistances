@@ -37,7 +37,9 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
 
 @interface US2WayFinderViewController ()<US2BeaconManagerDelegate>
 
-@property (nonatomic, weak) AVAudioPlayer *lastSound;
+@property (nonatomic) BOOL isStarted;
+
+@property (nonatomic, weak) NSString *lastInstruction;
 
 // ui
 @property (nonatomic, strong) UILabel *currentStateLabel;
@@ -58,9 +60,10 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
 @property (nonatomic, strong) US2BeaconWrapper *purpleBeacon2;
 
 
-// state
-@property (nonatomic, strong) TKStateMachine *stateMachine;
+@property (nonatomic, weak) US2BeaconWrapper *previousWaypointBeacon;
+@property (nonatomic, weak) US2BeaconWrapper *lastStepClosestBeacon;
 
+// state
 @property (nonatomic, strong) UIView *currentPage;
 @property (nonatomic, strong) UIView *nextPage;
 @end
@@ -74,45 +77,15 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
     [self setup];
 }
 
-- (void) setupStateMachine
+- (void)viewDidAppear:(BOOL)animated
 {
-    self.stateMachine = [TKStateMachine new];
-
-    TKState *awaitingState = [self.stateMachine addStateWithName:kAwaitingState];
-    TKState *startingState = [self.stateMachine addStateWithName:kStartingState];
-    TKState *walkingTowardsWP2 = [self.stateMachine addStateWithName:kWalkingTowardsWP2];
-    TKState *walkingTowardsWP3 = [self.stateMachine addStateWithName:kWalkingTowardsWP3];
-    TKState *walkingTowardsGoal = [self.stateMachine addStateWithName:kWalkingTowardsGoal];
-
-    [walkingTowardsWP2 setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
-        DLog(@"Previous state: %@", transition.sourceState);
-        if (transition.sourceState == state) return;
-        DLog(@"instruct");
-
-        [self doInstruction:@"Exit door and head left for 10m." audioFileName:kTurnLeftAudio];
-    }];
-    //
-    [walkingTowardsWP3 setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
-        DLog(@"Previous state: %@", transition.sourceState);
-        if (transition.sourceState == state) return;
-        [self doInstruction:@"Turn left and then right in two meters." audioFileName:kTurnLeftAudio];
-    }];
-
-    [walkingTowardsGoal setDidEnterStateBlock:^(TKState *state, TKTransition *transition) {
-        DLog(@"Previous state: %@", transition.sourceState);
-        if (transition.sourceState == state) return;
-        [self doInstruction:@"Turn right" audioFileName:kTurnRightAudio];
-    }];
-
-    TKEvent *firstBeaconClose = [TKEvent eventWithName:kFirstBeaconClosest transitioningFromStates:nil toState:walkingTowardsWP2];
-    TKEvent *secondWayPointClose = [TKEvent eventWithName:kSecondBeaconClose transitioningFromStates:@[walkingTowardsWP2] toState:walkingTowardsWP3];
-    TKEvent *thirdWayPointClose = [TKEvent eventWithName:kThirdBeaconClose transitioningFromStates:@[walkingTowardsWP3] toState:walkingTowardsGoal];
-
-
-    [self.stateMachine addEvent:firstBeaconClose];
-    [self.stateMachine addEvent:secondWayPointClose];
-    [self.stateMachine addEvent:thirdWayPointClose];
-
+    [super viewDidAppear:animated];
+    UIApplication.sharedApplication.idleTimerDisabled = YES;
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    UIApplication.sharedApplication.idleTimerDisabled = NO;
 }
 
 - (void) setupBeaconManager
@@ -211,7 +184,6 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
     self.currentStateLabel = [[UILabel alloc] init];
 
     [self setupViews];
-    [self setupStateMachine];
     [self setupBeaconManager];
     [self setupAudio];
 
@@ -231,35 +203,32 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
         return;
     }
 
-    [self.stateMachine activate];
     DLog(@"Starting!");
 
+    self.isStarted = YES;
+
 }
+
 - (void) step
 {
-    DLog(@"step (%@)", self.stateMachine.currentState.name);
+    DLog(@"Step. Closest beacon: %@, previously: %@", self.beaconManager.closestBeacon.name, self.previousWaypointBeacon.name);
 
     if (self.beaconManager.closestBeacon == self.blueBeacon2)
     {
         if (self.blueBeacon2.beacon.distance.floatValue < 5)
         {
-            [self.stateMachine fireEvent:kFirstBeaconClosest userInfo:nil error:nil];
+            [self doInstructionOnce:@"Turn left & walk straight for ~10 meters." audioFileName:kTurnLeftAudio];
         }
     }
     if (self.beaconManager.closestBeacon == self.mintBeacon2)
     {
         if (self.mintBeacon2.beacon.distance.floatValue < 2)
         {
-            [self.stateMachine fireEvent:kSecondBeaconClose userInfo:nil error:nil];
+            [self doInstructionOnce:@"Turn left & walk straight for ~3 meters." audioFileName:kTurnLeftAudio];
         }
         else
         {
-            static dispatch_once_t once;
-
-            dispatch_once(&once, ^{
-                [self doInstruction:@"Almost there!" audioFileName:kAlmostThereAudio];
-            });
-
+            [self doInstructionOnce:@"Almost there!" audioFileName:kAlmostThereAudio];
         }
     }
 
@@ -268,7 +237,7 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
         DLog(@"third beacon close");
         if (self.purpleBeacon2.beacon.distance.floatValue < 2)
         {
-            [self.stateMachine fireEvent:kThirdBeaconClose userInfo:nil error:nil];
+            [self doInstructionOnce:@"Turn right" audioFileName:kTurnRightAudio];
         }
     }
 }
@@ -276,26 +245,43 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
 
 -(void) doInstruction: (NSString*) text audioFileName:(NSString*)audioFileName
 {
+    DLog(@"doInstruction %@", text);
     AVAudioPlayer *audioPlayer = [self.audios objectForKey:audioFileName];
     if (audioFileName) {
         ZAssert(audioPlayer, @"No audoFileName '%@' found", audioFileName);
     }
     [audioPlayer play];
+    self.lastInstruction = text;
 
-    self.lastSound = audioPlayer;
-    self.nextPage = [self viewWithText:text];
+    UIView *fromView = self.currentPage;
+    UIView *toView = [self viewWithText:text];
 
-    [UIView transitionFromView:self.currentPage toView:self.nextPage duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished) {
-        [self.currentPage removeFromSuperview];
-        self.currentPage = self.nextPage;
-        self.nextPage = nil;
+    self.currentPage = toView;
+
+    [UIView transitionFromView:fromView toView:toView duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished) {
+
+        [fromView removeFromSuperview];
     }];
+}
+
+-(void) doInstructionOnce: (NSString*) text audioFileName:(NSString*)audioFileName
+{
+    if (![self.lastInstruction isEqualToString:text])
+    {
+        [self doInstruction:text audioFileName:audioFileName];
+    }
 }
 #pragma mark - US2BeaconManagerDelegate
 
 -(void)beaconManagerDidUpdate:(US2BeaconManager *)beaconManager
 {
-    if (!self.stateMachine.isActive)
+    if (self.lastStepClosestBeacon != self.beaconManager.closestBeacon)
+    {
+        self.previousWaypointBeacon = self.lastStepClosestBeacon;
+    }
+    self.lastStepClosestBeacon = self.beaconManager.closestBeacon;
+
+    if (!self.isStarted)
     {
         [self start];
     }
@@ -303,12 +289,6 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
     {
         [self step];
     }
-    // make sure we have beacons around
-    // find out position
-    // see if state changed
-        // trigger event
-        // audio update
-        // screen update
 }
 
 #pragma mark - shake
@@ -322,11 +302,11 @@ NSString *const kAlmostThereAudio = @"almost-there.m4a";
     if (motion == UIEventSubtypeMotionShake)
     {
         DLog(@"Shake!");
-        if (!self.lastSound.isPlaying)
-        {
-            DLog(@"play sound!");
-            [self.lastSound play];
-        }
+//        if (!self.lastSound.isPlaying)
+//        {
+//            DLog(@"play sound!");
+//            [self.lastSound play];
+//        }
     }
 }
 @end
