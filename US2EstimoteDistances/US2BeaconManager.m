@@ -157,7 +157,10 @@
 
 - (void) registerBeaconWrapper: (US2BeaconWrapper *)beaconWrapper
 {
-    [self.beaconWrappers addObject:beaconWrapper];
+    if (beaconWrapper)
+    {
+        [self.beaconWrappers addObject:beaconWrapper];
+    }
 }
 
 -(CGPoint) maxCoordinate
