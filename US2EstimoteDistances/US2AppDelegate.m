@@ -12,7 +12,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    UITabBar.appearance.tintColor = UIColor.bluColor;
+    UITabBar.appearance.barTintColor = UIColor.nonWhiteColor;
+
+    [UITabBarItem.appearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"PxGrotesk-Regular" size:12.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
+
     return YES;
 }
 							

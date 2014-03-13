@@ -87,7 +87,7 @@
     self.metricLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
     self.metricLabel.adjustsFontSizeToFitWidth = YES;
     self.metricLabel.minimumScaleFactor = 10.0f/12.0f;
-    self.metricLabel.font = [UIFont fontWithName:@"Helvetica" size:20.0f];
+    self.metricLabel.font = [UIFont fontWithName:@"PxGrotesk-Regular" size:20.0f];
     self.metricLabel.clipsToBounds = YES;
     self.metricLabel.backgroundColor = [UIColor clearColor];
     self.metricLabel.textColor = [UIColor whiteColor];

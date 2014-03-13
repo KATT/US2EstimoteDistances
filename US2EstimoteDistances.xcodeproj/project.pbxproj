@@ -27,7 +27,9 @@
 		AA533E4C18AD029E003BBD90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA533E4A18AD029E003BBD90 /* Main.storyboard */; };
 		AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA533E4E18AD029E003BBD90 /* US2DistancesViewController.m */; };
 		AA533E5118AD029E003BBD90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA533E5018AD029E003BBD90 /* Images.xcassets */; };
+		AA53A1A118D1F2D100957A13 /* FuturaLTPro-XBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA53A1A018D1F2D100957A13 /* FuturaLTPro-XBold.otf */; };
 		AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */; };
+		AAEBDFEA18D219BE004FD953 /* PxGrotesk-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAEBDFE918D219BE004FD953 /* PxGrotesk-Regular.otf */; };
 		AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */; };
 		AAEC10AA18AD242600EC9ED8 /* US2BeaconBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A918AD242600EC9ED8 /* US2BeaconBarView.m */; };
 		AAEC10B218AE7CE200EC9ED8 /* US2TriliterationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10B118AE7CE200EC9ED8 /* US2TriliterationViewController.m */; };
@@ -67,8 +69,10 @@
 		AA533E4E18AD029E003BBD90 /* US2DistancesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = US2DistancesViewController.m; sourceTree = "<group>"; };
 		AA533E5018AD029E003BBD90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA533E5718AD029E003BBD90 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AA53A1A018D1F2D100957A13 /* FuturaLTPro-XBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaLTPro-XBold.otf"; sourceTree = "<group>"; };
 		AABEEC8718B6500C00AD844F /* US2BeaconAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconAnnotationView.h; sourceTree = "<group>"; };
 		AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconAnnotationView.m; sourceTree = "<group>"; };
+		AAEBDFE918D219BE004FD953 /* PxGrotesk-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PxGrotesk-Regular.otf"; sourceTree = "<group>"; };
 		AAEC10A518AD059400EC9ED8 /* US2BeaconWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconWrapper.h; sourceTree = "<group>"; };
 		AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconWrapper.m; sourceTree = "<group>"; };
 		AAEC10A818AD242600EC9ED8 /* US2BeaconBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconBarView.h; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		AA533E3F18AD029E003BBD90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AAEBDFE918D219BE004FD953 /* PxGrotesk-Regular.otf */,
+				AA53A1A018D1F2D100957A13 /* FuturaLTPro-XBold.otf */,
 				AAF758BF18BE4E3E00746F02 /* Audio */,
 				AA533E4718AD029E003BBD90 /* US2AppDelegate.h */,
 				AA533E4818AD029E003BBD90 /* US2AppDelegate.m */,
@@ -270,6 +276,8 @@
 			files = (
 				AA3E77E518C4C13A00C133EF /* turn-left.m4a in Resources */,
 				AA246E1518D0A0EA0088523E /* goal.m4a in Resources */,
+				AAEBDFEA18D219BE004FD953 /* PxGrotesk-Regular.otf in Resources */,
+				AA53A1A118D1F2D100957A13 /* FuturaLTPro-XBold.otf in Resources */,
 				AA533E5118AD029E003BBD90 /* Images.xcassets in Resources */,
 				AA533E4318AD029E003BBD90 /* InfoPlist.strings in Resources */,
 				AA246E1318CF568C0088523E /* walk-straight.m4a in Resources */,

@@ -320,10 +320,10 @@ NSString *const kGoalAudio = @"goal.m4a";
     UILabel *textLabel;
 
     textLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, view.frame.size.width-20, view.frame.size.height)];
-    textLabel.text = text;
+    textLabel.text = text.uppercaseString;
     textLabel.numberOfLines = 0;
     textLabel.baselineAdjustment = UIBaselineAdjustmentAlignBaselines;
-    textLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:30.0f];
+    textLabel.font = [UIFont fontWithName:@"FuturaLTPro-XBold" size:42.0f ];
     textLabel.backgroundColor = [UIColor clearColor];
     textLabel.textColor = [UIColor nonWhiteColor];
     textLabel.textAlignment = NSTextAlignmentCenter;
