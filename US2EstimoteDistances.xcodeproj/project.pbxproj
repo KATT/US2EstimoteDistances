@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA08243718D35BF70060349E /* US2BeaconDataSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08243618D35BF70060349E /* US2BeaconDataSingleton.m */; };
 		AA0F9A1518BD1A6F0093ECF8 /* US2BeaconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */; };
 		AA0F9A1B18BE03D10093ECF8 /* US2WayFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F9A1A18BE03D10093ECF8 /* US2WayFinderViewController.m */; };
 		AA0F9A1E18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0F9A1D18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA08243518D35BF70060349E /* US2BeaconDataSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconDataSingleton.h; sourceTree = "<group>"; };
+		AA08243618D35BF70060349E /* US2BeaconDataSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconDataSingleton.m; sourceTree = "<group>"; };
 		AA0F9A1318BD1A6F0093ECF8 /* US2BeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconManager.h; sourceTree = "<group>"; };
 		AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconManager.m; sourceTree = "<group>"; };
 		AA0F9A1918BE03D10093ECF8 /* US2WayFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2WayFinderViewController.h; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */,
 				AA0F9A1318BD1A6F0093ECF8 /* US2BeaconManager.h */,
 				AA0F9A1418BD1A6F0093ECF8 /* US2BeaconManager.m */,
+				AA08243518D35BF70060349E /* US2BeaconDataSingleton.h */,
+				AA08243618D35BF70060349E /* US2BeaconDataSingleton.m */,
 				AA3E77E918C77D0900C133EF /* US2WayFinderInstruction.h */,
 				AA3E77EA18C77D0900C133EF /* US2WayFinderInstruction.m */,
 			);
@@ -332,6 +337,7 @@
 				AA4E65A918BF80A10047FF58 /* US2ColorQueue.m in Sources */,
 				AA0F9A1B18BE03D10093ECF8 /* US2WayFinderViewController.m in Sources */,
 				AA0F9A1E18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m in Sources */,
+				AA08243718D35BF70060349E /* US2BeaconDataSingleton.m in Sources */,
 				AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */,
 				AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */,
 				AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */,

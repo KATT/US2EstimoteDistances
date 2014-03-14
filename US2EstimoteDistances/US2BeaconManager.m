@@ -7,7 +7,7 @@
 //
 
 #import "US2BeaconManager.h"
-
+#import "US2BeaconDataSingleton.h"
 
 @interface US2BeaconManager () <ESTBeaconManagerDelegate>
 
@@ -17,7 +17,7 @@
 @property (readwrite) NSMutableArray *beaconWrappers;
 
 
-@property (nonatomic, strong) NSMutableSet *discoveredBeacons; // should live statically
+@property (readonly) US2BeaconDataSingleton *beaconData;
 @end
 
 @implementation US2BeaconManager
@@ -34,42 +34,23 @@
 - (void) setup
 {
     self.beaconWrappers = [NSMutableArray array];
-    self.discoveredBeacons = [NSMutableSet set];
 
-    // Setup views
-    [self setupBeaconManager];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(beaconDataDidUpdate) name:US2BeaconDataSingletonUpdate object:self.beaconData];
+}
+
+-(US2BeaconDataSingleton*) beaconData
+{
+    return [US2BeaconDataSingleton sharedInstance];
 }
 
 
--(void) setupBeaconManager
+
+
+-(void)beaconDataDidUpdate
 {
-    // setup Estimote beacon manager
-    // create manager instance
-    self.beaconManager = [[ESTBeaconManager alloc] init];
-    self.beaconManager.delegate = self;
-//    self.beaconManager.avoidUnknownStateBeacons = YES;
+    [self mapBeacons:self.beaconData.beacons];
 
-    // create sample region object (you can additionaly pass major / minor values)
-    ESTBeaconRegion* region = [[ESTBeaconRegion alloc] initWithProximityUUID:ESTIMOTE_PROXIMITY_UUID
-                                                                  identifier:@"EstimoteSampleRegion"];
-
-    // start looking for estimote beacons in region
-    // when beacon ranged beaconManager:didRangeBeacons:inRegion: invoked
-    [self.beaconManager startRangingBeaconsInRegion:region];
-}
-
-
-#pragma mark - ESTBeaconManagerDelegate
-
-
--(void)beaconManager:(ESTBeaconManager *)manager
-     didRangeBeacons:(NSArray *)beacons
-            inRegion:(ESTBeaconRegion *)region
-{
-    [self addBeacons: beacons];
-    [self mapBeacons:self.discoveredBeacons];
-
-//    DLog(@"%u discovered beacons.", self.discoveredBeacons.count);
+    DLog(@"%u discovered beacons.", self.beaconData.beacons.count);
     [self updateMaxDistance];
 
 //    DLog(@"Closest beacon: %@. Distance: %.2f", self.closestBeacon.name, self.closestBeacon.beacon.distance.floatValue);
@@ -92,18 +73,6 @@
     }
 }
 
-- (void) addBeacons: (NSArray *) updatedBeacons
-{
-
-    for (ESTBeacon *beacon in updatedBeacons)
-    {
-        if (![self.discoveredBeacons containsObject:beacon])
-        {
-            [self.discoveredBeacons addObject: beacon];
-        }
-    }
-    
-}
 - (void) updateMaxDistance
 {
     self.maxDistance = 0;
