@@ -76,17 +76,11 @@
     [self.delegate beaconManagerDidUpdate:self];
 }
 
--(BOOL)mapBeacon: (ESTBeacon*)beacon
+-(void)mapBeacon: (ESTBeacon*)beacon
 {
-    BOOL found = false;
     for (US2BeaconWrapper *beaconWrapper in self.beaconWrappers) {
-        if ([beaconWrapper.major isEqualToNumber:beacon.major])
-        {
-            beaconWrapper.beacon = beacon;
-            found = true;
-        }
+        [beaconWrapper mapUpdatedBeacon:beacon];
     }
-    return found;
 }
 
 
@@ -116,7 +110,7 @@
 
     for (US2BeaconWrapper *beaconWrapper in self.beaconWrappers)
     {
-        CGFloat distance = beaconWrapper.beacon.distance.floatValue;
+        CGFloat distance = beaconWrapper.distance.floatValue;
         if (distance > self.maxDistance)
         {
             self.maxDistance = distance;
@@ -132,7 +126,7 @@
     {
         if (!beaconWrapper.isActive) continue;
 
-        if (!closestBeacon || closestBeacon.beacon.distance.floatValue > beaconWrapper.beacon.distance.floatValue )
+        if (!closestBeacon || closestBeacon.distance.floatValue > beaconWrapper.distance.floatValue )
         {
             closestBeacon = beaconWrapper;
         }

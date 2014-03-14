@@ -51,7 +51,7 @@
 }
 - (CGFloat) circleRadius
 {
-    CGFloat distance = self.beaconWrapper.beacon.distance.floatValue;
+    CGFloat distance = self.beaconWrapper.distance.floatValue;
 
     if (distance <= 0.0)
     {

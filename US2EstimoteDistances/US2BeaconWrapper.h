@@ -12,11 +12,15 @@
 @interface US2BeaconWrapper : NSObject
 
 
++(instancetype)beaconWrapperWithMajor:(NSNumber*)major name:(NSString*)name;
 - (id) initWithMajor:(NSNumber*)major name:(NSString*)name lightColor:(UIColor *) lightColor darkColor:(UIColor *) darkColor;
 
-@property (nonatomic, readonly) NSNumber *major;
+-(BOOL)mapUpdatedBeacon: (ESTBeacon*)beacon;
 
-@property (nonatomic, strong) ESTBeacon *beacon;
+
+@property (nonatomic, readonly) NSNumber *major;
+@property (nonatomic, copy, readonly) NSNumber *distance;
+
 @property (nonatomic, copy) NSString *name;
 
 
@@ -28,5 +32,4 @@
 @property (nonatomic, readonly) BOOL isActive;
 
 
-+(instancetype)beaconWrapperWithMajor:(NSNumber*)major name:(NSString*)name;
 @end

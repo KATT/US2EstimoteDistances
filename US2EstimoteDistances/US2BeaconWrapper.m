@@ -10,11 +10,13 @@
 
 @interface US2BeaconWrapper()
 @property (readwrite) NSNumber *major;
+@property (copy, readwrite) NSNumber *distance;
+
+@property (nonatomic, strong) ESTBeacon *beacon;
 @end
 
 
 @implementation US2BeaconWrapper
-
 
 - (id) initWithMajor:(NSNumber *)major name:(NSString *)name lightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor
 {
@@ -42,6 +44,19 @@
     beaconWrapper.name = name;
 
     return beaconWrapper;
+}
+
+-(BOOL)mapUpdatedBeacon:(ESTBeacon *)beacon
+{
+    if (![self.major isEqualToNumber:beacon.major])
+    {
+        return false;
+    }
+    self.beacon = beacon;
+    if (self.isActive) {
+        self.distance = beacon.distance;
+    }
+    return true;
 }
 
 @end

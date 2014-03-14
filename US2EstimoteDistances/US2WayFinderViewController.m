@@ -211,8 +211,8 @@ NSString *const kGoalAudio = @"goal.m4a";
         self.vibrateIntensity = 0;
         return;
     }
-    self.vibrateIntensity = (baseDistance - beaconWrapper.beacon.distance.floatValue + 1.0)/baseDistance;
-    DLog(@"vibrate intensity: %.2f. Distance: %.2f", self.vibrateIntensity, beaconWrapper.beacon.distance.floatValue);
+    self.vibrateIntensity = (baseDistance - beaconWrapper.distance.floatValue + 1.0)/baseDistance;
+    DLog(@"vibrate intensity: %.2f. Distance: %.2f", self.vibrateIntensity, beaconWrapper.distance.floatValue);
     if (self.vibrateIntensity < 0.0) {
         self.vibrateIntensity = 0;
     }
@@ -221,13 +221,13 @@ NSString *const kGoalAudio = @"goal.m4a";
 
 - (void) step
 {
-    DLog(@"Step. Closest beacon: %@, previously: %@, distance: %.2f", self.beaconManager.closestBeacon.name, self.previouslyClosestBeacon.name, self.beaconManager.closestBeacon.beacon.distance.floatValue);
+    DLog(@"Step. Closest beacon: %@, previously: %@, distance: %.2f", self.beaconManager.closestBeacon.name, self.previouslyClosestBeacon.name, self.beaconManager.closestBeacon.distance.floatValue);
 
     US2BeaconWrapper *closestBeacon = self.beaconManager.closestBeacon;
 
     if (closestBeacon == self.firstWaypoint)
     {
-        if (self.firstWaypoint.beacon.distance.floatValue > 2)
+        if (self.firstWaypoint.distance.floatValue > 2)
         {
             if (self.lastInstruction == self.startingWaypointInstruction) {
                 // Approaching
@@ -245,7 +245,7 @@ NSString *const kGoalAudio = @"goal.m4a";
     if (closestBeacon == self.secondWaypoint)
     {
 
-        if (self.secondWaypoint.beacon.distance.floatValue > 2)
+        if (self.secondWaypoint.distance.floatValue > 2)
         {
             if (self.lastInstruction == self.firstWaypointInstruction) {
                 // Approaching
@@ -262,7 +262,7 @@ NSString *const kGoalAudio = @"goal.m4a";
     if (closestBeacon == self.thirdWaypoint)
     {
 
-        if (self.thirdWaypoint.beacon.distance.floatValue > 2)
+        if (self.thirdWaypoint.distance.floatValue > 2)
         {
             if (self.lastInstruction == self.secondWaypointInstruction) {
                 // Approaching
@@ -279,7 +279,7 @@ NSString *const kGoalAudio = @"goal.m4a";
     if (closestBeacon == self.forthWaypoint)
     {
 
-        if (self.forthWaypoint.beacon.distance.floatValue > 2)
+        if (self.forthWaypoint.distance.floatValue > 2)
         {
             if (self.lastInstruction == self.secondWaypointInstruction) {
                 // Approaching

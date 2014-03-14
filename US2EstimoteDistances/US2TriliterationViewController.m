@@ -155,9 +155,9 @@
     [P3 addObject:[NSNumber numberWithDouble:[self.beaconManager beaconAtIndex:2].coordinate.y]];
 
     //this is the distance between all the points and the unknown point
-    double DistA = [self.beaconManager beaconAtIndex:0].beacon.distance.doubleValue;
-    double DistB = [self.beaconManager beaconAtIndex:1].beacon.distance.doubleValue;
-    double DistC = [self.beaconManager beaconAtIndex:2].beacon.distance.doubleValue;
+    double DistA = [self.beaconManager beaconAtIndex:0].distance.doubleValue;
+    double DistB = [self.beaconManager beaconAtIndex:1].distance.doubleValue;
+    double DistC = [self.beaconManager beaconAtIndex:2].distance.doubleValue;
 
     // ex = (P2 - P1)/(numpy.linalg.norm(P2 - P1))
     NSMutableArray *ex = [[NSMutableArray alloc] initWithCapacity:0];
