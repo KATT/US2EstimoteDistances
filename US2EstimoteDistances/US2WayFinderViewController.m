@@ -47,7 +47,6 @@ NSString *const kGoalAudio = @"goal.m4a";
 @property (nonatomic, strong) US2WayFinderInstruction *firstWaypointInstruction; // almost there
 @property (nonatomic, strong) US2WayFinderInstruction *secondWaypointInstruction;
 @property (nonatomic, strong) US2WayFinderInstruction *thirdWaypointInstruction;
-@property (nonatomic, strong) US2WayFinderInstruction *forthWaypointInstruction;
 
 
 @property (nonatomic, strong) US2WayFinderInstruction *goalWaypointInstruction;
@@ -155,7 +154,6 @@ NSString *const kGoalAudio = @"goal.m4a";
     self.firstWaypointInstruction = [US2WayFinderInstruction instructionWithText:@"Turn right" audioFileName:kTurnRightAudio];
     self.secondWaypointInstruction = [US2WayFinderInstruction instructionWithText:@"Turn left" audioFileName:kTurnLeftAudio];
     self.thirdWaypointInstruction = [US2WayFinderInstruction instructionWithText:@"Turn left" audioFileName:kTurnLeftAudio];
-    self.forthWaypointInstruction = [US2WayFinderInstruction instructionWithText:@"Turn left" audioFileName:kTurnLeftAudio];
 
     self.goalWaypointInstruction = [US2WayFinderInstruction instructionWithText:@"Goal!!" audioFileName:kGoalAudio];
 
@@ -218,16 +216,24 @@ NSString *const kGoalAudio = @"goal.m4a";
     }
 }
 
+- (void) goal
+{
+
+    [self doInstructionOnce:self.goalWaypointInstruction];
+    self.nextWaypoint = nil;
+    self.isStarted = NO;
+    [self.checkNextFireTimer invalidate];
+}
+
 
 - (void) step
 {
-    DLog(@"Step. Closest beacon: %@, previously: %@, distance: %.2f", self.beaconManager.closestBeacon.name, self.previouslyClosestBeacon.name, self.beaconManager.closestBeacon.distance.floatValue);
 
     US2BeaconWrapper *closestBeacon = self.beaconManager.closestBeacon;
 
     if (closestBeacon == self.firstWaypoint)
     {
-        if (self.firstWaypoint.distance.floatValue > 2)
+        if (self.firstWaypoint.distance.floatValue > 2.5)
         {
             if (self.lastInstruction == self.startingWaypointInstruction) {
                 // Approaching
@@ -245,7 +251,7 @@ NSString *const kGoalAudio = @"goal.m4a";
     if (closestBeacon == self.secondWaypoint)
     {
 
-        if (self.secondWaypoint.distance.floatValue > 2)
+        if (self.secondWaypoint.distance.floatValue > 1.7)
         {
             if (self.lastInstruction == self.firstWaypointInstruction) {
                 // Approaching
@@ -262,7 +268,7 @@ NSString *const kGoalAudio = @"goal.m4a";
     if (closestBeacon == self.thirdWaypoint)
     {
 
-        if (self.thirdWaypoint.distance.floatValue > 2)
+        if (self.thirdWaypoint.distance.floatValue > 2.0)
         {
             if (self.lastInstruction == self.secondWaypointInstruction) {
                 // Approaching
@@ -271,8 +277,9 @@ NSString *const kGoalAudio = @"goal.m4a";
         }
         else
         {
-            [self doInstructionOnce:self.thirdWaypointInstruction];
-            self.nextWaypoint = self.forthWaypoint;
+            [self goal];
+//            [self doInstructionOnce:self.thirdWaypointInstruction];
+//            self.nextWaypoint = self.forthWaypoint;
         }
     }
 
@@ -288,10 +295,7 @@ NSString *const kGoalAudio = @"goal.m4a";
         }
         else
         {
-            [self doInstructionOnce:self.goalWaypointInstruction];
-            self.nextWaypoint = nil;
-            self.isStarted = NO;
-            [self.checkNextFireTimer invalidate];
+            [self goal];
         }
     }
 
@@ -365,15 +369,22 @@ NSString *const kGoalAudio = @"goal.m4a";
 
 -(void)beaconManagerDidUpdate:(US2BeaconManager *)beaconManager
 {
+
+    DLog(@"Closest beacon: %@, previously: %@, distance: %.2f", self.beaconManager.closestBeacon.name, self.previouslyClosestBeacon.name, self.beaconManager.closestBeacon.distance.floatValue);
+
+    BOOL closestBeaconDidChange = NO;
     if (self.lastStepClosestBeacon != self.beaconManager.closestBeacon)
     {
         self.previouslyClosestBeacon = self.lastStepClosestBeacon;
+        closestBeaconDidChange = YES;
     }
     self.lastStepClosestBeacon = self.beaconManager.closestBeacon;
 
     if (!self.isStarted)
     {
-        [self start];
+        if (closestBeaconDidChange) {
+            [self start];
+        }
     }
     else
     {
