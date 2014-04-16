@@ -29,6 +29,8 @@
 		AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA533E4E18AD029E003BBD90 /* US2DistancesViewController.m */; };
 		AA533E5118AD029E003BBD90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA533E5018AD029E003BBD90 /* Images.xcassets */; };
 		AA53A1A118D1F2D100957A13 /* FuturaLTPro-XBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA53A1A018D1F2D100957A13 /* FuturaLTPro-XBold.otf */; };
+		AAA0DCEB18FEB3D60032B10D /* US2SignExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA0DCEA18FEB3D60032B10D /* US2SignExampleViewController.m */; };
+		AAA0DCED18FEB4670032B10D /* sign.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AAA0DCEC18FEB4670032B10D /* sign.m4a */; };
 		AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */; };
 		AAEBDFEA18D219BE004FD953 /* PxGrotesk-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAEBDFE918D219BE004FD953 /* PxGrotesk-Regular.otf */; };
 		AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEC10A618AD059400EC9ED8 /* US2BeaconWrapper.m */; };
@@ -73,6 +75,9 @@
 		AA533E5018AD029E003BBD90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA533E5718AD029E003BBD90 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AA53A1A018D1F2D100957A13 /* FuturaLTPro-XBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaLTPro-XBold.otf"; sourceTree = "<group>"; };
+		AAA0DCE918FEB3D60032B10D /* US2SignExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2SignExampleViewController.h; sourceTree = "<group>"; };
+		AAA0DCEA18FEB3D60032B10D /* US2SignExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2SignExampleViewController.m; sourceTree = "<group>"; };
+		AAA0DCEC18FEB4670032B10D /* sign.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sign.m4a; sourceTree = "<group>"; };
 		AABEEC8718B6500C00AD844F /* US2BeaconAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconAnnotationView.h; sourceTree = "<group>"; };
 		AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconAnnotationView.m; sourceTree = "<group>"; };
 		AAEBDFE918D219BE004FD953 /* PxGrotesk-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PxGrotesk-Regular.otf"; sourceTree = "<group>"; };
@@ -140,6 +145,8 @@
 				AA0F9A1A18BE03D10093ECF8 /* US2WayFinderViewController.m */,
 				AA0F9A1C18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.h */,
 				AA0F9A1D18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m */,
+				AAA0DCE918FEB3D60032B10D /* US2SignExampleViewController.h */,
+				AAA0DCEA18FEB3D60032B10D /* US2SignExampleViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -209,6 +216,7 @@
 		AAF758BF18BE4E3E00746F02 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				AAA0DCEC18FEB4670032B10D /* sign.m4a */,
 				AA246E1418D0A0EA0088523E /* goal.m4a */,
 				AA246E1218CF568C0088523E /* walk-straight.m4a */,
 				AA3E77E718C76B8F00C133EF /* almost-there.m4a */,
@@ -280,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA3E77E518C4C13A00C133EF /* turn-left.m4a in Resources */,
+				AAA0DCED18FEB4670032B10D /* sign.m4a in Resources */,
 				AA246E1518D0A0EA0088523E /* goal.m4a in Resources */,
 				AAEBDFEA18D219BE004FD953 /* PxGrotesk-Regular.otf in Resources */,
 				AA53A1A118D1F2D100957A13 /* FuturaLTPro-XBold.otf in Resources */,
@@ -336,6 +345,7 @@
 				AAEC10AA18AD242600EC9ED8 /* US2BeaconBarView.m in Sources */,
 				AA4E65A918BF80A10047FF58 /* US2ColorQueue.m in Sources */,
 				AA0F9A1B18BE03D10093ECF8 /* US2WayFinderViewController.m in Sources */,
+				AAA0DCEB18FEB3D60032B10D /* US2SignExampleViewController.m in Sources */,
 				AA0F9A1E18BE10EE0093ECF8 /* TKStateMachine+US2Extensions.m in Sources */,
 				AA08243718D35BF70060349E /* US2BeaconDataSingleton.m in Sources */,
 				AAEC10A718AD059400EC9ED8 /* US2BeaconWrapper.m in Sources */,
