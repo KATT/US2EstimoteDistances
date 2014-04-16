@@ -112,7 +112,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Sign" id="2kb-tM-9dD"/>
+                    <tabBarItem key="tabBarItem" title="Sign" image="directions-50" id="2kb-tM-9dD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zao-8H-i92" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -121,6 +121,7 @@
     </scenes>
     <resources>
         <image name="bar_chart-50" width="25" height="25"/>
+        <image name="directions-50" width="25" height="25"/>
         <image name="map_marker-50" width="25" height="25"/>
         <image name="treasury_map-50" width="25" height="25"/>
     </resources>

@@ -8,6 +8,8 @@
 
 #import "US2SignExampleViewController.h"
 
+#import <AudioToolbox/AudioServices.h>
+
 #import <TransitionKit/TransitionKit.h>
 #import "US2BeaconManager.h"
 
@@ -119,6 +121,8 @@ NSString *const kSignAudio = @"sign.m4a";
     }];
     [self.signInstruction play];
 
+    [self vibrate];
+
 }
 
 
@@ -169,5 +173,34 @@ NSString *const kSignAudio = @"sign.m4a";
     
     return view;
 }
+
+
+#pragma mark - shake
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        DLog(@"Shake!");
+        if (!self.signInstruction.isPlaying)
+        {
+            DLog(@"play sound!");
+            [self.signInstruction play];
+        }
+    }
+}
+
+
+#pragma mark - vibrate shizzle
+
+- (void) vibrate
+{
+    AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
+}
+
 
 @end
