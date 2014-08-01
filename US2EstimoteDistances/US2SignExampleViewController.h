@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) IBOutlet UIView *awaitingView;
 @property (nonatomic, strong) IBOutlet UIView *signView;
+@property (nonatomic, strong) IBOutlet UIView *signView2;
 
 @end

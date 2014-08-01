@@ -29,6 +29,8 @@
 		AA533E4F18AD029E003BBD90 /* US2DistancesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA533E4E18AD029E003BBD90 /* US2DistancesViewController.m */; };
 		AA533E5118AD029E003BBD90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA533E5018AD029E003BBD90 /* Images.xcassets */; };
 		AA53A1A118D1F2D100957A13 /* FuturaLTPro-XBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA53A1A018D1F2D100957A13 /* FuturaLTPro-XBold.otf */; };
+		AA6E24AD198BEB110039512C /* b1.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AA6E24AB198BEB110039512C /* b1.m4a */; };
+		AA6E24AE198BEB110039512C /* b2.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AA6E24AC198BEB110039512C /* b2.m4a */; };
 		AAA0DCEB18FEB3D60032B10D /* US2SignExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA0DCEA18FEB3D60032B10D /* US2SignExampleViewController.m */; };
 		AAA0DCED18FEB4670032B10D /* sign.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AAA0DCEC18FEB4670032B10D /* sign.m4a */; };
 		AABEEC8918B6500C00AD844F /* US2BeaconAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AABEEC8818B6500C00AD844F /* US2BeaconAnnotationView.m */; };
@@ -75,6 +77,8 @@
 		AA533E5018AD029E003BBD90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA533E5718AD029E003BBD90 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AA53A1A018D1F2D100957A13 /* FuturaLTPro-XBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuturaLTPro-XBold.otf"; sourceTree = "<group>"; };
+		AA6E24AB198BEB110039512C /* b1.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = b1.m4a; sourceTree = "<group>"; };
+		AA6E24AC198BEB110039512C /* b2.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = b2.m4a; sourceTree = "<group>"; };
 		AAA0DCE918FEB3D60032B10D /* US2SignExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2SignExampleViewController.h; sourceTree = "<group>"; };
 		AAA0DCEA18FEB3D60032B10D /* US2SignExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2SignExampleViewController.m; sourceTree = "<group>"; };
 		AAA0DCEC18FEB4670032B10D /* sign.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = sign.m4a; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 		AAF758BF18BE4E3E00746F02 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				AA6E24AB198BEB110039512C /* b1.m4a */,
+				AA6E24AC198BEB110039512C /* b2.m4a */,
 				AAA0DCEC18FEB4670032B10D /* sign.m4a */,
 				AA246E1418D0A0EA0088523E /* goal.m4a */,
 				AA246E1218CF568C0088523E /* walk-straight.m4a */,
@@ -287,7 +293,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6E24AD198BEB110039512C /* b1.m4a in Resources */,
 				AA3E77E518C4C13A00C133EF /* turn-left.m4a in Resources */,
+				AA6E24AE198BEB110039512C /* b2.m4a in Resources */,
 				AAA0DCED18FEB4670032B10D /* sign.m4a in Resources */,
 				AA246E1518D0A0EA0088523E /* goal.m4a in Resources */,
 				AAEBDFEA18D219BE004FD953 /* PxGrotesk-Regular.otf in Resources */,
@@ -465,7 +473,7 @@
 				GCC_PREFIX_HEADER = "US2EstimoteDistances/US2EstimoteDistances-Prefix.pch";
 				INFOPLIST_FILE = "US2EstimoteDistances/US2EstimoteDistances-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3CCFA04A-2960-4F48-A3DF-F043FCFB3574";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -476,12 +484,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alexander Johansson (7VF7TEWKNS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ustwo studio ltd";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "US2EstimoteDistances/US2EstimoteDistances-Prefix.pch";
 				INFOPLIST_FILE = "US2EstimoteDistances/US2EstimoteDistances-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1CB24961-F48B-41B3-B452-4497398F3DDB";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
