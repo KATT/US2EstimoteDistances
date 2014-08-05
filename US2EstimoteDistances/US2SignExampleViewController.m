@@ -91,8 +91,8 @@ NSString *const kSignAudio = @"sign.m4a";
 }
 - (void) setupInstructions
 {
-    self.signInstruction = [US2WayFinderInstruction instructionWithText:@"Welcome to Kings Cross Station.\n\nThe Gates are straight ahead, please mind the step." audioFileName:@"b1.m4a"];
-    self.signInstruction2 = [US2WayFinderInstruction instructionWithText:@"Turn left for the Northern Line, or Turn right for the Victoria Line\n\nTap your screen twice if you need any assistance." audioFileName:@"b2.m4a"];
+    self.signInstruction = [US2WayFinderInstruction instructionWithText:@"Welcome to Kings Cross Station.\n\nThe Gates are straight ahead.\n\nDouble tap you screen if you need any assistance in getting to the platform" audioFileName:@"b1.m4a"];
+    self.signInstruction2 = [US2WayFinderInstruction instructionWithText:@"Turn left for the Northern Line, North bound towards High Barnet." audioFileName:@"b2.m4a"];
 }
 
 - (void) setupViews
@@ -198,7 +198,7 @@ NSString *const kSignAudio = @"sign.m4a";
 
 
     if (isSmall) {
-        textLabel.font =  [UIFont fontWithName:@"FuturaLTPro-XBold" size:30.0f ];
+        textLabel.font =  [UIFont fontWithName:@"FuturaLTPro-XBold" size:25.0f ];
         textLabel.textAlignment = NSTextAlignmentLeft;
     }
 
