@@ -27,6 +27,8 @@ NSString *const kSignAudio = @"sign.m4a";
 
 @property (nonatomic, weak) UIView *currentView;
 
+@property (nonatomic, weak) US2BeaconWrapper *lastBeaconTriggered;
+
 @property (nonatomic, strong) US2WayFinderInstruction *signInstruction;
 @property (nonatomic, strong) US2WayFinderInstruction *signInstruction2;
 
@@ -51,9 +53,7 @@ NSString *const kSignAudio = @"sign.m4a";
     }
     return self;
 }
-- (BOOL) isActive {
-    return (self.tabBarController.selectedViewController == self);
-}
+
 - (void)viewDidLoad
 {
 	// Do any additional setup after loading the view.
@@ -73,8 +73,6 @@ NSString *const kSignAudio = @"sign.m4a";
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    [self restart];
 }
 
 - (void) setupBeaconManager
@@ -94,7 +92,7 @@ NSString *const kSignAudio = @"sign.m4a";
 - (void) setupInstructions
 {
     self.signInstruction = [US2WayFinderInstruction instructionWithText:@"Welcome to Kings Cross Station.\n\nThe Gates are straight ahead, please mind the step." audioFileName:@"b1.m4a"];
-    self.signInstruction2 = [US2WayFinderInstruction instructionWithText:@"Turn left for the Northern Line,\nor Turn right for the Victoria Line\n\nTap your screen twice if you need any assistance." audioFileName:@"b2.m4a"];
+    self.signInstruction2 = [US2WayFinderInstruction instructionWithText:@"Turn left for the Northern Line, or Turn right for the Victoria Line\n\nTap your screen twice if you need any assistance." audioFileName:@"b2.m4a"];
 }
 
 - (void) setupViews
@@ -154,14 +152,23 @@ NSString *const kSignAudio = @"sign.m4a";
 -(void)beaconManagerDidUpdate:(US2BeaconManager *)beaconManager
 {
 
-    DLog(@"Closest beacon: %@, distance: %.2f", self.beaconManager.closestBeacon.name, self.beaconManager.closestBeacon.distance.floatValue);
+    for (US2BeaconWrapper *anyBeacon in self.beaconManager.beaconWrappers) {
+        if (!anyBeacon.isActive) continue;
 
-    if (self.beaconManager.closestBeacon.isActive && self.beaconManager.closestBeacon.distance.floatValue < 1.0) {
-        if (self.currentView == self.awaitingView) {
+        DLog(@"Beacon: %@, distance: %.2f", anyBeacon.name, anyBeacon.distance.floatValue);
+        if (
+            self.currentView == self.awaitingView &&
+            anyBeacon.distance.floatValue < 1.5
+            ) {
             [self playInstruction1];
-        }
-        if (self.currentView == self.signView) {
+            self.lastBeaconTriggered = anyBeacon;
+        } else if (
+                   self.currentView == self.signView &&
+                   self.lastBeaconTriggered != anyBeacon &&
+                   anyBeacon.distance.floatValue < 4
+                   ) {
             [self playInstruction2];
+            self.lastBeaconTriggered = anyBeacon;
         }
     }
 
@@ -210,20 +217,6 @@ NSString *const kSignAudio = @"sign.m4a";
 {
     return YES;
 }
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    if (motion == UIEventSubtypeMotionShake)
-    {
-        DLog(@"Shake!");
-        if (!self.signInstruction.isPlaying && self.isStarted)
-        {
-            DLog(@"play sound!");
-            [self.signInstruction play];
-        }
-    }
-}
-
 
 #pragma mark - vibrate shizzle
 
