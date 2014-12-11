@@ -43,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		006B73411A64BDE31237C624 /* Pods-US2EstimoteDistances.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US2EstimoteDistances.release.xcconfig"; path = "Pods/Target Support Files/Pods-US2EstimoteDistances/Pods-US2EstimoteDistances.release.xcconfig"; sourceTree = "<group>"; };
+		7C344319376B9FC95C401B53 /* Pods-US2EstimoteDistances.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US2EstimoteDistances.debug.xcconfig"; path = "Pods/Target Support Files/Pods-US2EstimoteDistances/Pods-US2EstimoteDistances.debug.xcconfig"; sourceTree = "<group>"; };
 		AA08243518D35BF70060349E /* US2BeaconDataSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconDataSingleton.h; sourceTree = "<group>"; };
 		AA08243618D35BF70060349E /* US2BeaconDataSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2BeaconDataSingleton.m; sourceTree = "<group>"; };
 		AA0F9A1318BD1A6F0093ECF8 /* US2BeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = US2BeaconManager.h; sourceTree = "<group>"; };
@@ -93,7 +95,6 @@
 		AAEC10B118AE7CE200EC9ED8 /* US2TriliterationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = US2TriliterationViewController.m; sourceTree = "<group>"; };
 		AAF758BD18BE4A6100746F02 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BDD3A078A57546AF96599447 /* libPods-US2EstimoteDistances.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-US2EstimoteDistances.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F52BF9597E6E4799A8BFDCAF /* Pods-US2EstimoteDistances.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-US2EstimoteDistances.xcconfig"; path = "Pods/Pods-US2EstimoteDistances.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +162,7 @@
 				AA533E3E18AD029E003BBD90 /* US2EstimoteDistances */,
 				AA533E3718AD029E003BBD90 /* Frameworks */,
 				AA533E3618AD029E003BBD90 /* Products */,
-				F52BF9597E6E4799A8BFDCAF /* Pods-US2EstimoteDistances.xcconfig */,
+				F5FF9FD1B0C6EB91D8D1C3CD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -231,6 +232,15 @@
 				AA3E77E318C4C13A00C133EF /* exit-door-left.m4a */,
 			);
 			name = Audio;
+			sourceTree = "<group>";
+		};
+		F5FF9FD1B0C6EB91D8D1C3CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C344319376B9FC95C401B53 /* Pods-US2EstimoteDistances.debug.xcconfig */,
+				006B73411A64BDE31237C624 /* Pods-US2EstimoteDistances.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,7 +350,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-US2EstimoteDistances-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-US2EstimoteDistances/Pods-US2EstimoteDistances-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -463,7 +473,7 @@
 		};
 		AA533E6818AD029E003BBD90 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F52BF9597E6E4799A8BFDCAF /* Pods-US2EstimoteDistances.xcconfig */;
+			baseConfigurationReference = 7C344319376B9FC95C401B53 /* Pods-US2EstimoteDistances.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -472,24 +482,27 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "US2EstimoteDistances/US2EstimoteDistances-Prefix.pch";
 				INFOPLIST_FILE = "US2EstimoteDistances/US2EstimoteDistances-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3CCFA04A-2960-4F48-A3DF-F043FCFB3574";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		AA533E6918AD029E003BBD90 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F52BF9597E6E4799A8BFDCAF /* Pods-US2EstimoteDistances.xcconfig */;
+			baseConfigurationReference = 006B73411A64BDE31237C624 /* Pods-US2EstimoteDistances.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ustwo studio ltd";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ustwo studio ltd";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "US2EstimoteDistances/US2EstimoteDistances-Prefix.pch";
 				INFOPLIST_FILE = "US2EstimoteDistances/US2EstimoteDistances-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1CB24961-F48B-41B3-B452-4497398F3DDB";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
