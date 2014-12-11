@@ -16,6 +16,10 @@
     UITabBar.appearance.barTintColor = UIColor.nonWhiteColor;
 
     [UITabBarItem.appearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"PxGrotesk-Regular" size:12.0f], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    
+    // From iOS 8 on request the 'always' authorization so the app can work in background as well
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    [locationManager requestAlwaysAuthorization];
 
     return YES;
 }
